@@ -1,0 +1,413 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Home Page";
+}
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/css/index")
+    @Scripts.Render("~/js/index")
+</head>
+<body class="hold-transition skin-blue sidebar-mini" style="margin: 0px; padding: 0px; height: 100%;">
+    <header class="main-header" id="_layout_header">
+        <a class="logo" href="#">
+            <span class="logo-mini">
+                <b>XMS</b>
+            </span>
+            <span class="logo-lg">
+                <b>XMS</b>
+            </span>
+        </a>
+        <nav class="navbar">
+            <!--data-toggle="offcanvas"添加到下面的a标签可以实现左边栏的动态效果-->
+            <a class="sidebar-toggle" href="#" data-toggle="offcanvas">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <div class="collapse navbar-collapse pull-left" id="gongneng">
+                <ul class="nav navbar-nav topmenu">
+                    <li>
+                        <a class="animated" onmouseout="normal(this)" onmousemove="big(this)" href="/">首页1</a>                        
+                    </li>
+                    <li>
+                        <a class="animated" onmouseout="normal(this)" onmousemove="big(this)" href="/Index2/Index">首页2</a>
+                    </li>
+                    <li>
+                        <a class="animated" onmouseout="normal(this)" onmousemove="big(this)" href="/">供电</a>
+                    </li>
+                    <li>
+                        <a class="animated" onmouseout="normal(this)" onmousemove="big(this)" href="/">机电</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <A class="dropdown-toggle animated" id="link_operationCenter" href="#" data-toggle="dropdown"></A>
+                    </li>
+                    <li>
+                        <a title="综合监控数据管理系统" id="link_project">综合监控数据管理系统</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <aside class="main-sidebar">
+        <section class="sidebar" id="scro" style="width: auto; height: 849px; -ms-overflow-x: hidden; -ms-overflow-y: auto;">
+            <ul class="sidebar-menu" id="_frame_left_menu">
+                <li class="header" style="text-align: center; color: rgb(238, 238, 238); font-size: 16px;">运维总览</li>
+                <li class="treeview" onmouseout="normal(this)" onmousemove="big(this)">
+                    <a class="animated" href="#" pagetitle="系统信息">
+                        <span class="pull-right-container"></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-bar-chart-o"></i>
+                        <span>系统信息</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="/project/" target="center_main" pagetitle="项目版本">
+                                <i class="fa fa-arrow-right"></i>
+                                发布版本
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/summary/" target="center_main" pagetitle="设备统计">
+                                <i class="fa fa-arrow-right"></i>
+                                设备统计
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/navimenu/" target="center_main" pagetitle="导航管理">
+                                <i class="fa fa-arrow-right"></i>
+                                导航管理
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/device/" target="center_main" pagetitle="全部设备">
+                                <i class="fa fa-arrow-right"></i>
+                                全部设备
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview" onmouseout="normal(this)" onmousemove="big(this)">
+                    <a class="animated" href="#" pagetitle="供电">
+                        <span class="pull-right-container"></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-flash"></i>
+                        <span>供电</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="/pscada/" target="center_main" pagetitle="设备管理">
+                                <i class="fa fa-arrow-right"></i>
+                                设备管理
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview" onmouseout="normal(this)" onmousemove="big(this)">
+                    <a class="animated" href="#" pagetitle="机电">
+                        <span class="pull-right-container"></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-building"></i>
+                        <span>机电</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="/bas/" target="center_main" pagetitle="设备管理">
+                                <i class="fa fa-arrow-right"></i>
+                                设备管理
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/bas/system/" target="center_main" pagetitle="BAS系统">
+                                <i class="fa fa-arrow-right"></i>
+                                BAS系统
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/bas/mode/" target="center_main" pagetitle="BAS模式">
+                                <i class="fa fa-arrow-right"></i>
+                                BAS模式
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview" onmouseout="normal(this)" onmousemove="big(this)">
+                    <a class="animated" href="#" pagetitle="闭路电视">
+                        <span class="pull-right-container"></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-television"></i>
+                        <span>闭路电视</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="/cctv/camera/" target="center_main" pagetitle="摄像头">
+                                <i class="fa fa-arrow-right"></i>
+                                摄像头
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/cctv/monitor/" target="center_main" pagetitle="监视器">
+                                <i class="fa fa-arrow-right"></i>
+                                监视器
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview" onmouseout="normal(this)" onmousemove="big(this)">
+                    <a class="animated" href="#" pagetitle="广播">
+                        <span class="pull-right-container"></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-bullhorn"></i>
+                        <span>广播</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="/pa/areatype/" target="center_main" pagetitle="分区类型">
+                                <i class="fa fa-arrow-right"></i>
+                                分区类型
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/pa/area/" target="center_main" pagetitle="广播区域">
+                                <i class="fa fa-arrow-right"></i>
+                                广播区域
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/pa/prerecord/" target="center_main" pagetitle="预录信息">
+                                <i class="fa fa-arrow-right"></i>
+                                预录信息
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview" onmouseout="normal(this)" onmousemove="big(this)">
+                    <a class="animated" href="#" pagetitle="站台门">
+                        <span class="pull-right-container"></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-bullhorn"></i>
+                        <span>站台门</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="/psd/area/" target="center_main" pagetitle="分区类型">
+                                <i class="fa fa-arrow-right"></i>
+                                分区类型
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/psd/device/" target="center_main" pagetitle="设备管理">
+                                <i class="fa fa-arrow-right"></i>
+                                设备管理
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview" onmouseout="normal(this)" onmousemove="big(this)">
+                    <a class="animated" href="#" pagetitle="乘客信息">
+                        <span class="pull-right-container"></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-paper-plane"></i>
+                        <span>乘客信息</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="/pis/areatype/" target="center_main" pagetitle="分区类型">
+                                <i class="fa fa-arrow-right"></i>
+                                分区类型
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/pis/area/" target="center_main" pagetitle="显示区域">
+                                <i class="fa fa-arrow-right"></i>
+                                显示区域
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/pis/template/" target="center_main" pagetitle="信息模板">
+                                <i class="fa fa-arrow-right"></i>
+                                信息模板
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview" onmouseout="normal(this)" onmousemove="big(this)">
+                    <a class="animated" href="#" pagetitle="火灾报警">
+                        <span class="pull-right-container"></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-fire"></i>
+                        <span>火灾报警</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="/fas/partion/" target="center_main" pagetitle="火灾分区">
+                                <i class="fa fa-arrow-right"></i>
+                                火灾分区
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/fas/device/" target="center_main" pagetitle="分区">
+                                <i class="fa fa-arrow-right"></i>
+                                设备管理
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview" onmouseout="normal(this)" onmousemove="big(this)">
+                    <a class="animated" href="#" pagetitle="售检票">
+                        <span class="pull-right-container"></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-group"></i>
+                        <span>售检票</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="/afc/device/" target="center_main" pagetitle="设备管理">
+                                <i class="fa fa-arrow-right"></i>
+                                设备管理
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview" onmouseout="normal(this)" onmousemove="big(this)">
+                    <a class="animated" href="#" pagetitle="门禁系统">
+                        <span class="pull-right-container"></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-credit-card"></i>
+                        <span>门禁系统</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="/acs/device/" target="center_main" pagetitle="设备管理">
+                                <i class="fa fa-arrow-right"></i>
+                                设备管理
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview" onmouseout="normal(this)" onmousemove="big(this)">
+                    <a class="animated" href="#" pagetitle="分类管理">
+                        <span class="pull-right-container"></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-users"></i>
+                        <span>分类管理</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="/category/" target="center_main" pagetitle="分组类型">
+                                <i class="fa fa-arrow-right"></i>
+                                分类管理
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview" onmouseout="normal(this)" onmousemove="big(this)">
+                    <a class="animated" href="#" pagetitle="分组管理">
+                        <span class="pull-right-container"></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-users"></i>
+                        <span>分组管理</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="/device/grouptype/" target="center_main" pagetitle="分组类型">
+                                <i class="fa fa-arrow-right"></i>
+                                分组类型
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/device/group/" target="center_main" pagetitle="分组管理">
+                                <i class="fa fa-arrow-right"></i>
+                                分组管理
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview" onmouseout="normal(this)" onmousemove="big(this)">
+                    <a class="animated" href="#" pagetitle="权限管理">
+                        <span class="pull-right-container"></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-users"></i>
+                        <span>权限管理</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="/user/role/" target="center_main" pagetitle="角色管理">
+                                <i class="fa fa-arrow-right"></i>
+                                角色管理
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/user/" target="center_main" pagetitle="用户管理">
+                                <i class="fa fa-arrow-right"></i>
+                                用户管理
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/schema/" target="center_main" pagetitle="画面管理">
+                                <i class="fa fa-arrow-right"></i>
+                                画面权限
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview" onmouseout="normal(this)" onmousemove="big(this)">
+                    <a class="animated" href="#" pagetitle="系统设置">
+                        <span class="pull-right-container"></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-gears"></i>
+                        <span>系统设置</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="/project/pack" target="center_main" pagetitle="数据打包">
+                                <i class="fa fa-arrow-right"></i>
+                                数据打包
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/project/back" target="center_main" pagetitle="版本备份">
+                                <i class="fa fa-arrow-right"></i>
+                                版本备份
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview" onmouseout="normal(this)" onmousemove="big(this)">
+                    <a class="animated" href="#" pagetitle="基础数据">
+                        <span class="pull-right-container"></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-bar-chart-o"></i>
+                        <span>基础数据</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="/url/" target="center_main" pagetitle="外部接口">
+                                <i class="fa fa-arrow-right"></i>
+                                外部接口
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/clstype/" target="center_main" pagetitle="设备类型">
+                                <i class="fa fa-arrow-right"></i>
+                                设备类型
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/categorytemplate/" target="center_main" pagetitle="分类模板">
+                                <i class="fa fa-arrow-right"></i>
+                                分类模板
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </aside>
+    <iframe name="center_main" height="100%" class="content-wrapper" id="center" src="/project/" frameborder="0" marginwidth="100" marginheight="100" scrolling="no" style="display: block;" onload="changeFrameWidth()"></iframe>
+</body>
+</html>

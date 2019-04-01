@@ -1,0 +1,138 @@
+.skin-blue .main-header .navbar {
+	background-color: rgb(60, 141, 188);
+}
+.skin-blue .main-header .navbar .nav > li > a {
+	color: rgb(255, 255, 255);
+}
+.skin-blue .main-header .navbar .nav > li > a:hover {
+	background: rgba(0, 0, 0, 0.1); color: rgb(246, 246, 246);
+}
+.skin-blue .main-header .navbar .nav > li > a:active {
+	background: rgba(0, 0, 0, 0.1); color: rgb(246, 246, 246);
+}
+.skin-blue .main-header .navbar .nav > li > a:focus {
+	background: rgba(0, 0, 0, 0.1); color: rgb(246, 246, 246);
+}
+.skin-blue .main-header .navbar .nav .open > a {
+	background: rgba(0, 0, 0, 0.1); color: rgb(246, 246, 246);
+}
+.skin-blue .main-header .navbar .nav .open > a:hover {
+	background: rgba(0, 0, 0, 0.1); color: rgb(246, 246, 246);
+}
+.skin-blue .main-header .navbar .nav .open > a:focus {
+	background: rgba(0, 0, 0, 0.1); color: rgb(246, 246, 246);
+}
+.skin-blue .main-header .navbar .nav > .active > a {
+	background: rgba(0, 0, 0, 0.1); color: rgb(246, 246, 246);
+}
+.skin-blue .main-header .navbar .sidebar-toggle {
+	color: rgb(255, 255, 255);
+}
+.skin-blue .main-header .navbar .sidebar-toggle:hover {
+	background: rgba(0, 0, 0, 0.1); color: rgb(246, 246, 246);
+}
+.skin-blue .main-header .navbar .sidebar-toggle {
+	color: rgb(255, 255, 255);
+}
+.skin-blue .main-header .navbar .sidebar-toggle:hover {
+	background-color: rgb(54, 127, 169);
+}
+@media all and (max-width:767px)
+{
+.skin-blue .main-header .navbar .dropdown-menu li.divider {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+.skin-blue .main-header .navbar .dropdown-menu li a {
+	color: rgb(255, 255, 255);
+}
+.skin-blue .main-header .navbar .dropdown-menu li a:hover {
+	background: rgb(54, 127, 169);
+}
+}
+.skin-blue .main-header .logo {
+	color: rgb(255, 255, 255); border-bottom-color: transparent; border-bottom-width: 0px; border-bottom-style: solid; background-color: rgb(54, 127, 169);
+}
+.skin-blue .main-header .logo:hover {
+	background-color: rgb(53, 124, 165);
+}
+.skin-blue .main-header li.user-header {
+	background-color: rgb(60, 141, 188);
+}
+.skin-blue .content-header {
+	background: none;
+}
+.skin-blue .wrapper {
+	background-color: rgb(34, 45, 50);
+}
+.skin-blue .main-sidebar {
+	background-color: rgb(34, 45, 50);
+}
+.skin-blue .left-side {
+	background-color: rgb(34, 45, 50);
+}
+.skin-blue .user-panel > .info {
+	color: rgb(255, 255, 255);
+}
+.skin-blue .user-panel > .info > a {
+	color: rgb(255, 255, 255);
+}
+.skin-blue .sidebar-menu > li.header {
+	background: rgb(26, 34, 38); color: rgb(75, 100, 111);
+}
+.skin-blue .sidebar-menu > li > a {
+	border-left-color: transparent; border-left-width: 3px; border-left-style: solid;
+}
+.skin-blue .sidebar-menu > li:hover > a {
+	background: rgb(30, 40, 44); color: rgb(255, 255, 255); border-left-color: rgb(60, 141, 188);
+}
+.skin-blue .sidebar-menu > li.active > a {
+	background: rgb(30, 40, 44); color: rgb(255, 255, 255); border-left-color: rgb(60, 141, 188);
+}
+.skin-blue .sidebar-menu > li > .treeview-menu {
+	background: rgb(44, 59, 65); margin: 0px 1px;
+}
+.skin-blue .sidebar a {
+	color: rgb(184, 199, 206);
+}
+.skin-blue .sidebar a:hover {
+	text-decoration: none;
+}
+.skin-blue .treeview-menu > li > a {
+	color: rgb(138, 164, 175);
+}
+.skin-blue .treeview-menu > li.active > a {
+	color: rgb(255, 255, 255);
+}
+.skin-blue .treeview-menu > li > a:hover {
+	color: rgb(255, 255, 255);
+}
+.skin-blue .sidebar-form {
+	margin: 10px; border-radius: 3px; border: 1px solid rgb(55, 72, 80); border-image: none;
+}
+.skin-blue .sidebar-form input[type='text'] {
+	border: 1px solid transparent; transition:0.3s ease-in-out; border-image: none; height: 35px; box-shadow: none; background-color: rgb(55, 72, 80); -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out;
+}
+.skin-blue .sidebar-form .btn {
+	border: 1px solid transparent; transition:0.3s ease-in-out; border-image: none; height: 35px; box-shadow: none; background-color: rgb(55, 72, 80); -webkit-transition: all .3s ease-in-out; -o-transition: all .3s ease-in-out;
+}
+.skin-blue .sidebar-form input[type='text'] {
+	border-radius: 2px 0px 0px 2px; color: rgb(102, 102, 102);
+}
+.skin-blue .sidebar-form input[type='text']:focus {
+	color: rgb(102, 102, 102); background-color: rgb(255, 255, 255);
+}
+.skin-blue .sidebar-form input[type='text']:focus + .input-group-btn .btn {
+	color: rgb(102, 102, 102); background-color: rgb(255, 255, 255);
+}
+.skin-blue .sidebar-form input[type='text']:focus + .input-group-btn .btn {
+	border-left-color: rgb(255, 255, 255);
+}
+.skin-blue .sidebar-form .btn {
+	border-radius: 0px 2px 2px 0px; color: rgb(153, 153, 153);
+}
+.skin-blue.layout-top-nav .main-header > .logo {
+	color: rgb(255, 255, 255); border-bottom-color: transparent; border-bottom-width: 0px; border-bottom-style: solid; background-color: rgb(60, 141, 188);
+}
+.skin-blue.layout-top-nav .main-header > .logo:hover {
+	background-color: rgb(59, 138, 184);
+}
