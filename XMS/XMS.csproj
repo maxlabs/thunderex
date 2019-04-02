@@ -122,6 +122,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Index2Controller.cs" />
+    <Compile Include="Controllers\ProductSkuController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -129,10 +130,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AdminLTE.min.css" />
+    <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fonts\font-awesome.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\plugins\bootstrap-editable.css" />
+    <Content Include="Content\plugins\bootstrap-table\bootstrap-table.min.css" />
+    <Content Include="Content\plugins\bootstrapValidator\bootstrapValidator.min.css" />
+    <Content Include="Content\plugins\jquery.treegrid.min.css" />
     <Content Include="Content\skin-blue.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -141,7 +147,16 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="Scripts\jQuery-2.2.0.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery.nicescroll.min.js" />
+    <Content Include="Scripts\plugins\bootstrap-editable.js" />
+    <Content Include="Scripts\plugins\bootstrap-table-treegrid.js" />
+    <Content Include="Scripts\plugins\bootstrap-table\bootstrap-table-editable.js" />
+    <Content Include="Scripts\plugins\bootstrap-table\bootstrap-table-zh-CN.min.js" />
+    <Content Include="Scripts\plugins\bootstrap-table\bootstrap-table.min.js" />
+    <Content Include="Scripts\plugins\bootstrapValidator\bootstrapValidator.min.js" />
+    <Content Include="Scripts\plugins\jquery.treegrid.bootstrap3.js" />
+    <Content Include="Scripts\plugins\jquery.treegrid.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -177,6 +192,8 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Index2\Index.cshtml" />
+    <Content Include="Views\ProductSku\Index.cshtml" />
+    <Content Include="Views\Shared\_PageLayout.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
