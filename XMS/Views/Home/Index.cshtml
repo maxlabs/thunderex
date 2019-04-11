@@ -92,17 +92,17 @@
                     </ul>
                 </li>
                 <li class="treeview" onmouseout="normal(this)" onmousemove="big(this)">
-                    <a class="animated" href="#" pagetitle="供电">
+                    <a class="animated" href="#" pagetitle="订单管理">
                         <span class="pull-right-container"></span>
                         <i class="fa fa-angle-left pull-right"></i>
                         <i class="fa fa-flash"></i>
-                        <span>供电</span>
+                        <span>订单管理</span>
                     </a>
                     <ul class="treeview-menu">
                         <li>
-                            <a href="/pscada/" target="center_main" pagetitle="设备管理">
+                            <a href="@Url.Action("List", "Order", new { }, null)" target="center_main" pagetitle="订单列表">
                                 <i class="fa fa-arrow-right"></i>
-                                设备管理
+                                订单列表
                             </a>
                         </li>
                     </ul>
