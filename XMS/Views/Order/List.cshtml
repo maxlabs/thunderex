@@ -87,7 +87,7 @@
 		$(document).ready(function() {
 			$('#mytab').bootstrapTable({
 				method : 'post',
-				contentType: "application/json",
+				contentType: "application/x-www-form-urlencoded",
 				url : "@Url.Action("Load", "Order", new { }, null)",
 				height : tableHeight(),//高度调整
 				toolbar : '#toolbar',
@@ -114,11 +114,11 @@
 					valign : 'middle'
 				}, {
 					title : 'Id',
-					field : 'id',
+					field: 'Id',
 					visible : true
 				}, {
 					title : '标题',
-					field : 'title',
+					field : 'Title',
 					sortable : false,
 					editable : {
 						type : 'text',
@@ -126,7 +126,7 @@
 					}
 				}, {
 					title : '订单编号',
-					field : 'paId',
+					field : 'PaId',
 					sortable : false,
 					editable : {
 						type : 'text',
@@ -134,7 +134,7 @@
 					}
 				}, {
 					title : '客户类型',
-					field : 'isAgent',
+					field : 'IsAgent',
 					sortable : false,
 					editable : {
 						type : 'select',

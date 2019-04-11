@@ -17,7 +17,7 @@ namespace XMS.Controllers
             return View();
         }
 
-        [HttpPost]
+        //[HttpPost]
         public JsonResult Load() {
             List<OrderModel> orders = new List<OrderModel>();
             orders.Add(new OrderModel(1, "Order 1 Test ", "XHD-I23LKDSL0-8234", false));
@@ -31,11 +31,7 @@ namespace XMS.Controllers
             orders.Add(new OrderModel(9, "Order 1 Test ", "XHD-I23LKDSL0-8234", false));
             orders.Add(new OrderModel(10, "Order 1 Test ", "XHD-I23LKDSL0-8234", false));
 
-            string strJson = JsonConvert.SerializeObject(orders);
-            JsonResult result= new JsonResult();
-            result.Data = strJson;
-
-            return result;
+            return Json(orders, JsonRequestBehavior.AllowGet);
         }
     }
 }
