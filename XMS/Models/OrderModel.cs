@@ -5,6 +5,7 @@ using System.Web;
 
 namespace XMS.Models
 {
+    [Serializable]
     public class OrderModel
     {
         private long id;
