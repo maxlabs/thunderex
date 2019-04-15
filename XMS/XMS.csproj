@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Index2Controller.cs" />
     <Compile Include="Controllers\OrderController.cs" />
@@ -127,7 +128,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BootstrapTableResult.cs" />
+    <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\OrderModel.cs" />
+    <Compile Include="Models\ResultUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -196,6 +200,8 @@
     <Content Include="Views\ProductSku\Index.cshtml" />
     <Content Include="Views\Shared\_PageLayout.cshtml" />
     <Content Include="Views\Order\List.cshtml" />
+    <Content Include="Views\Customer\List.cshtml" />
+    <Content Include="Views\Order\Order.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

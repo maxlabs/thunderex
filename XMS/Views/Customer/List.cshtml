@@ -6,20 +6,20 @@
     <section class="content-header">
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-            <li><a href="#">订单管理</a></li>
-            <li class="active">订单列表</li>
+            <li><a href="#">客户管理</a></li>
+            <li class="active">客户列表</li>
         </ol>
     </section>
     <!-- <div th:include="header::topNav"></div> -->
     <div class="tableBody">
         <div class="panel panel-default">
-            <!--<div class="panel-heading">订单管理&nbsp;》订单列表</div>-->
             <div class="panel-body form-group" style="margin-bottom: 0px;">
                 <div class="col-sm-2">
                     <select class="form-control" name="MsgType" id="search_MsgType" style="text-align-last: center;" onchange="filter();">
-                        <option value=0 selected>选择订单类型</option>
-                        <option value=1>客户</option>
-                        <option value=2>代客</option>
+                        <option value=0 selected>选择客户类型</option>
+                        <option value=1>个人</option>
+                        <option value=2>商店老板</option>
+                        <option value=3>WMS客户</option>
                     </select>
                 </div>
             </div>
@@ -41,12 +41,12 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">新增订单</h4>
+                    <h4 class="modal-title" id="myModalLabel">新增客户</h4>
                 </div>
                 <form id="addForm" method="post" class="form-horizontal" action="target.php">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">标题</label>
+                            <label class="col-sm-3 control-label">客户名称</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="Title" id="add_Title" />
                             </div>
@@ -67,14 +67,35 @@
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">是否代客</label>
+                            <label class="col-sm-3 control-label">公司</label>
                             <div class="col-sm-9 role add">
                                 <input type="checkbox" class="form-control" name="isTrain" id="add_IsTrain">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">内容</label>
+                            <label class="col-sm-3 control-label">移动电话</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" rows="3" name="Content" id="add_Content"></textarea>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">固定电话</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" rows="3" name="Content" id="add_Content"></textarea>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">联系地址</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" rows="3" name="Content" id="add_Content"></textarea>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">服务类型</label>
                             <div class="col-sm-9">
                                 <textarea class="form-control" rows="3" name="Content" id="add_Content"></textarea>
                             </div>
@@ -95,7 +116,7 @@
 			$('#mytab').bootstrapTable({
 				method : 'post',
 				contentType: "application/x-www-form-urlencoded",
-				url : "@Url.Action("Load", "Order", new { }, null)",
+				url : "@Url.Action("Load", "Customer", new { }, null)",
 				height : tableHeight(),//高度调整
 				toolbar : '#toolbar',
 				striped : true, //是否显示行间隔色
@@ -124,42 +145,51 @@
 					field: 'Id',
 					visible : true
 				}, {
-					title : '标题',
-					field : 'Title',
+                    title : 'UserName',
+                    field : 'UserName',
 					sortable : false,
 					editable : {
 						type : 'text',
 						title : '标题'
 					}
 				}, {
-					title : '订单编号',
-					field : 'PaId',
+				    title : 'Company',
+                    field : 'Company',
 					sortable : false,
 					editable : {
 						type : 'text',
-						title: '订单编号'
+                        title: 'Company'
 					}
 				}, {
-					title : '客户类型',
-					field : 'IsAgent',
+                    title : 'Telphone',
+                    field : 'Telphone',
 					sortable : false,
 					editable : {
-						type : 'select',
-						title: '客户类型',
-						source : [ {
-							value : false,
-							text : "否"
-						}, {
-							value : true,
-							text : "是"
-						} ]
+					    type : 'text',
+                        title: 'Telphone'
 					}
-				}],
+				}, {
+					title : 'Mobilephone',
+					field : 'Mobilephone',
+					sortable : false,
+					editable : {
+					    type : 'text',
+					    title: 'Mobilephone'
+					}
+				}, {
+                    title : 'Address',
+                    field : 'Address',
+                    sortable : false,
+                    editable : {
+                        type : 'text',
+                        title: 'Address'
+                    }
+                }],
 				locale : 'zh-CN',//中文支持,
 				onEditableSave : function(field, row, oldValue, $el) {
 					$.ajax({
 						type : "post",
-						url : "@Url.Action("Update", "Order", new { }, null)",
+						url : "@Url.Action("Update", "Customer", new { }, null)",
 						data : row,
 						dataType : 'JSON',
 						success : function(data, result) {
@@ -239,7 +269,7 @@
 				//如果表单验证正确，则请求后台添加用户
 				if ($("#addForm").data('bootstrapValidator').isValid()) {
 					var _info = $('#addForm').serialize();
-					$.post("@Url.Action("Create", "Order", new { }, null)", $('#addForm').serialize(), function(data) {
+					$.post("@Url.Action("Create", "Customer", new { }, null)", $('#addForm').serialize(), function(data) {
 						//后台返回添加成功
 						if (data.status == 200) {
 							$('#addBody').modal('hide');
@@ -269,7 +299,7 @@
 					for (var i = 0; i < dataArr.length; i++) {
 						ID[i] = dataArr[i].Id;
 					}
-				    $.post("@Url.Action("Delete", "Order", new {}, null)", {ids: ID}, function(data) {
+				    $.post("@Url.Action("Delete", "Customer", new {}, null)", {ids: ID}, function(data) {
 						if (data.status == 200) {
 							$('.popup_de .show_msg').text('删除成功！');
 							$('.popup_de .btn_cancel').css('display', 'none');
@@ -278,7 +308,7 @@
 								$('.popup_de').removeClass('bbox');
 							})
 							$('#mytab').bootstrapTable('refresh', {
-							    url: '@Url.Action("Load", "Order", new {}, null)'
+							    url: '@Url.Action("Load", "Customer", new {}, null)'
 							});
 						} else {
 							alert('删除失败:原因' + data.msg)
@@ -289,7 +319,7 @@
 		})
 		function filter() {
 			$('#mytab').bootstrapTable('refresh', {
-			    url: '@Url.Action("Load", "Order", new {}, null)'
+			    url: '@Url.Action("Load", "Customer", new {}, null)'
 			})
 		} 
     </script>

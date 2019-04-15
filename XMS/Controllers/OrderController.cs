@@ -17,8 +17,15 @@ namespace XMS.Controllers
             return View();
         }
 
-        //[HttpPost]
-        public JsonResult Load() {
+        [HttpGet]
+        public ActionResult Order()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult Load()
+        {
             List<OrderModel> orders = new List<OrderModel>();
             orders.Add(new OrderModel(1, "Order 1 Test ", "XHD-I23LKDSL0-8234", false));
             orders.Add(new OrderModel(2, "Order 1 Test ", "XHD-I23LKDSL0-8234", false));
@@ -31,7 +38,22 @@ namespace XMS.Controllers
             orders.Add(new OrderModel(9, "Order 1 Test ", "XHD-I23LKDSL0-8234", false));
             orders.Add(new OrderModel(10, "Order 1 Test ", "XHD-I23LKDSL0-8234", false));
 
-            return Json(orders, JsonRequestBehavior.AllowGet);
+            //BootstrapTableResult result = new BootstrapTableResult();
+            //result.setRows(orders);
+            //result.setTotal(100);
+
+            Dictionary<string, object> result = new Dictionary<string, object>();
+            result.Add("rows", orders);
+            result.Add("total", 100);
+
+            return Json(result, "application/x-www-form-urlencoded");
+        }
+
+        [HttpPost]
+        public JsonResult Delete(List<string> ids)
+        {
+            var result = ResultUtil.success("删除成功！");
+            return Json(result, "application/json");
         }
     }
 }
