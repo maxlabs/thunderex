@@ -13,7 +13,7 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>XMS</RootNamespace>
+    <RootNamespace>Thunder.XMS</RootNamespace>
     <AssemblyName>XMS</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
@@ -44,6 +44,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -120,22 +128,65 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\ChannelController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\DistributionCenterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MaterielController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\PricePro\IncidentalPriceController.cs" />
     <Compile Include="Controllers\Index2Controller.cs" />
+    <Compile Include="Controllers\PricePro\CurrencyRateController.cs" />
     <Compile Include="Controllers\ProductSkuController.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Article\ArticleViewModel.cs" />
+    <Compile Include="Models\Customer\CustomerBillViewModel.cs" />
+    <Compile Include="Models\DistributionCenter\BagViewModel.cs" />
+    <Compile Include="Models\ChannelViewModel.cs" />
+    <Compile Include="Models\CurrencyRateViewModel.cs" />
+    <Compile Include="Models\Customer\CustomerViewModel.cs" />
+    <Compile Include="Models\DepartmentViewModel.cs" />
+    <Compile Include="Models\Order\OrderViewModel.cs" />
+    <Compile Include="Models\Store\PerformanceViewModel.cs" />
+    <Compile Include="Models\Store\StoreFinancialViewModel.cs" />
+    <Compile Include="Models\Store\ChangeRecordViewModel.cs" />
+    <Compile Include="Models\Store\IdCardViewModel.cs" />
+    <Compile Include="Models\MaterielViewModel.cs" />
+    <Compile Include="Models\Store\ProblemShipmentViewModel.cs" />
+    <Compile Include="Models\Store\BillViewModel.cs" />
+    <Compile Include="Models\Store\StoreViewModel.cs" />
+    <Compile Include="Models\User\UserRoleViewModel.cs" />
+    <Compile Include="Models\User\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AdminLTE.min.css" />
     <Content Include="Content\animate.min.css" />
+    <Content Include="Content\plugins\bootstrap-editable.css" />
+    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\datetimepicker.css" />
     <Content Include="Content\fonts\font-awesome.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\plugins\bootstrap-editable.css" />
+    <Content Include="Content\plugins\bootstrap-datetimepicker\bootstrap-datepicker.css" />
+    <Content Include="Content\plugins\bootstrap-datetimepicker\bootstrap-datepicker.min.css" />
+    <Content Include="Content\plugins\bootstrap-datetimepicker\bootstrap-datepicker.standalone.css" />
+    <Content Include="Content\plugins\bootstrap-datetimepicker\bootstrap-datepicker.standalone.min.css" />
+    <Content Include="Content\plugins\bootstrap-datetimepicker\bootstrap-datepicker3.css" />
+    <Content Include="Content\plugins\bootstrap-datetimepicker\bootstrap-datepicker3.min.css" />
+    <Content Include="Content\plugins\bootstrap-datetimepicker\bootstrap-datepicker3.standalone.css" />
+    <Content Include="Content\plugins\bootstrap-datetimepicker\bootstrap-datepicker3.standalone.min.css" />
+    <Content Include="Content\typeahead.js-bootstrap.css" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\plugins\bootstrap-datetimepicker\bootstrap-datepicker.js" />
+    <Content Include="Scripts\plugins\bootstrap-datetimepicker\bootstrap-datepicker.min.js" />
     <Content Include="Content\plugins\bootstrap-table\bootstrap-table.min.css" />
     <Content Include="Content\plugins\bootstrapValidator\bootstrapValidator.min.css" />
     <Content Include="Content\plugins\jquery.treegrid.min.css" />
@@ -145,10 +196,12 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\app.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\page.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="Scripts\jQuery-2.2.0.min.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery.nicescroll.min.js" />
+    <Content Include="Scripts\plugins\bootstrap-datetimepicker\bootstrap-datepicker.zh-CN.min.js" />
     <Content Include="Scripts\plugins\bootstrap-editable.js" />
     <Content Include="Scripts\plugins\bootstrap-table-treegrid.js" />
     <Content Include="Scripts\plugins\bootstrap-table\bootstrap-table-editable.js" />
@@ -157,7 +210,9 @@
     <Content Include="Scripts\plugins\bootstrapValidator\bootstrapValidator.min.js" />
     <Content Include="Scripts\plugins\jquery.treegrid.bootstrap3.js" />
     <Content Include="Scripts\plugins\jquery.treegrid.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -174,7 +229,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -190,10 +244,52 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\plugins\bootstrap-datetimepicker\bootstrap-datepicker.css.map" />
+    <Content Include="Content\plugins\bootstrap-datetimepicker\bootstrap-datepicker.standalone.css.map" />
+    <Content Include="Content\plugins\bootstrap-datetimepicker\bootstrap-datepicker3.css.map" />
+    <Content Include="Content\plugins\bootstrap-datetimepicker\bootstrap-datepicker3.standalone.css.map" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Index2\Index.cshtml" />
     <Content Include="Views\ProductSku\Index.cshtml" />
     <Content Include="Views\Shared\_PageLayout.cshtml" />
+    <Content Include="Views\IncidentalPrice\Index.cshtml" />
+    <Content Include="Views\CurrencyRate\Index.cshtml" />
+    <Content Include="Views\Department\Index.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\ApplicationMaterials\Index.cshtml" />
+    <Content Include="Views\Article\Index.cshtml" />
+    <Content Include="Views\Channel\Index.cshtml" />
+    <Content Include="Views\Materiel\Auth.cshtml" />
+    <Content Include="Views\Order\Adjust.cshtml" />
+    <Content Include="Views\Store\Index.cshtml" />
+    <Content Include="Views\UserRoleManagent\Index.cshtml" />
+    <Content Include="Views\User\Role.cshtml" />
+    <Content Include="Views\Store\Bill.cshtml" />
+    <Content Include="Views\Store\Problem.cshtml" />
+    <Content Include="Views\DistributionCenter\BagState.cshtml" />
+    <Content Include="Views\Store\IdCard.cshtml" />
+    <Content Include="Views\Store\History.cshtml" />
+    <Content Include="Views\Store\ChangeRecord.cshtml" />
+    <Content Include="Views\Department\Credit.cshtml" />
+    <Content Include="Views\Customer\Credit.cshtml" />
+    <Content Include="Views\Customer\Bill.cshtml" />
+    <Content Include="Views\Store\Financial.cshtml" />
+    <Content Include="Views\Store\Performance.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ApplicationCore\ApplicationCore.csproj">
+      <Project>{f8681d49-129c-4e1c-9b63-116afd3a10fd}</Project>
+      <Name>ApplicationCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{1697E2EC-E228-4C5A-BE9E-4B908E90BCF3}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestData\TestData.csproj">
+      <Project>{A5C69863-3E67-448E-8F89-A9ADDA2DC590}</Project>
+      <Name>TestData</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -92,3 +92,13 @@ E:\MyGitHub\Repos\maxlabs\thunderex\XMS\bin\zh-Hans\System.Web.WebPages.Razor.re
 E:\MyGitHub\Repos\maxlabs\thunderex\XMS\obj\Debug\XMS.csprojResolveAssemblyReference.cache
 E:\MyGitHub\Repos\maxlabs\thunderex\XMS\obj\Debug\XMS.dll
 E:\MyGitHub\Repos\maxlabs\thunderex\XMS\obj\Debug\XMS.pdb
+E:\MyGitHub\Repos\maxlabs\thunderex\XMS\bin\EntityFramework.dll
+E:\MyGitHub\Repos\maxlabs\thunderex\XMS\bin\EntityFramework.SqlServer.dll
+E:\MyGitHub\Repos\maxlabs\thunderex\XMS\bin\EntityFramework.xml
+E:\MyGitHub\Repos\maxlabs\thunderex\XMS\bin\EntityFramework.SqlServer.xml
+E:\MyGitHub\Repos\maxlabs\thunderex\XMS\bin\ApplicationCore.dll
+E:\MyGitHub\Repos\maxlabs\thunderex\XMS\bin\Infrastructure.dll
+E:\MyGitHub\Repos\maxlabs\thunderex\XMS\bin\TestData.dll
+E:\MyGitHub\Repos\maxlabs\thunderex\XMS\bin\ApplicationCore.pdb
+E:\MyGitHub\Repos\maxlabs\thunderex\XMS\bin\Infrastructure.pdb
+E:\MyGitHub\Repos\maxlabs\thunderex\XMS\bin\TestData.pdb

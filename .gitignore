@@ -4,3 +4,11 @@
 
 /.vs
 /packages
+/ApplicationCore/bin/Debug
+/ApplicationCore/obj/Debug
+/Infrastructure/bin/Debug
+/Infrastructure/obj/Debug
+/TestData/bin/Debug
+/TestData/obj/Debug
+*.dll
+*.pdb

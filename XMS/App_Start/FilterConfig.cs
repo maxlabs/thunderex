@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace XMS
+namespace Thunder.XMS
 {
     public class FilterConfig
     {

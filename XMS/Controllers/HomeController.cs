@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
+using Thunder.Infrastructure.Data;
 
-namespace XMS.Controllers
+namespace Thunder.XMS.Controllers
 {
     public class HomeController : Controller
     {
+        private XmsDbContext dbContext = new XmsDbContext();
         public ActionResult Index()
         {
+            
+            var tmp = dbContext.Channels.ToList();
             return View();
         }
 

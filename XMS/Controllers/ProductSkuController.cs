@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace XMS.Controllers
+namespace Thunder.XMS.Controllers
 {
     public class ProductSkuController : Controller
     {

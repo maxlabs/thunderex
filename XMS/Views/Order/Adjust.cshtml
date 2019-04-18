@@ -1,0 +1,306 @@
+﻿@{
+Layout = "~/Views/Shared/_PageLayout.cshtml";
+ViewBag.Title = "Home Page";
+}
+
+<body>
+    <!-- <div th:include="header::topNav"></div> -->
+    <div class="tableBody">
+        <div class="panel panel-default">
+            <div class="panel-heading">单票费用</div>
+            <div class="panel-body form-group" style="margin-bottom: 0px;">
+                <div class="col-sm-2">
+                    <select class="form-control" name="MsgType" id="search_MsgType" style="text-align-last: center;"
+                        onchange="filter();">
+                        <option value=0 selected>选择模板类型</option>
+                        <option value=1>车站</option>
+                        <option value=2>列车</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <table id="mytab" class="table table-hover"></table>
+        <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
+            <button id="btn_delete" type="button" class="btn btn-default" style="display: none;">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                删除
+            </button>
+            <button id="btn_add" type="button" class="btn btn-default" data-toggle="modal" data-target="#addBody">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                新增
+            </button>
+        </div>
+    </div>
+    <div class="modal fade" id="addBody" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">新增预录广播</h4>
+                </div>
+                <form id="addForm" method="post" class="form-horizontal" action="target.php">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">标题</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="Title" id="add_Title" />
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">外部编号</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="paId" id="add_PaId" />
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">扩展编号</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="ExtendId" id="add_ExtendId" />
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">列车广播</label>
+                            <div class="col-sm-9 role add">
+                                <input type="checkbox" class="form-control" name="isTrain" id="add_IsTrain">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">内容</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" rows="3" name="Content" id="add_Content"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" id="add_saveBtn">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div th:include="footer::footer('')"></div>
+    <script type="text/javascript">
+        $(function () {
+            $('#mytab').bootstrapTable({
+                method: 'post',
+                contentType: "application/x-www-form-urlencoded",
+                url: "@Url.Action("OrderList", "Order")",
+                height: tableHeight(), //高度调整
+                toolbar: '#toolbar',
+                striped: true, //是否显示行间隔色
+                dataField: "rows",
+                pageNumber: 1, //初始化加载第一页，默认第一页
+                pagination: true, //是否分页
+                queryParamsType: '',
+                queryParams: queryParams,
+                sidePagination: 'server',
+                pageSize: 30, //单页记录数
+                pageList: [30, 50, 100, 200], //分页步进值
+                showRefresh: true, //刷新按钮
+                showColumns: true,
+                clickToSelect: true, //是否启用点击选中行
+                toolbarAlign: 'right',
+                buttonsAlign: 'right', //按钮对齐方式
+                columns: [{
+                        title: '全选',
+                        field: 'select',
+                        checkbox: true,
+                        width: 25,
+                        align: 'center',
+                        valign: 'middle'
+                    }, {
+                        title: '编号',
+                        field: 'Id',
+                        visible: true
+                    },
+                    {
+                        title: '订单号',
+                        field: 'OrderId',
+                        sortable: false
+                    },
+                    {
+                        title: '客户',
+                        field: 'Customer',
+                        sortable: false
+                    },
+                    {
+                        title: '手机号码',
+                        field: 'Mobile',
+                        sortable: false
+                    },
+                    {
+                        title: '身份证号',
+                        field: 'IdCard',
+                        sortable: false
+                    },
+                    {
+                        title: '费用',
+                        field: 'Fee',
+                        sortable: false,
+                        editable: {
+                            type: 'text',
+                            title: '费用'
+                        }
+                    },
+                    {
+                        title: '操作',
+                        field: 'operate',
+                        align: 'center',
+                        valign: 'middle',
+                        width: 600,
+                        formatter: function (value, row, index) {
+                            var e = '<div class="tableBody">';
+                            e += '<div class="col-sm-3"><button type="button" class="btn btn-success"  onclick="addChildGrade(' + index + ')">收取费用</a></div>';
+                            return e;
+                        }
+                    }
+                ],
+                locale: 'zh-CN', //中文支持,
+                onEditableSave: function (field, row, oldValue, $el) {
+                    $.ajax({
+                        type: "post",
+                        url: "/pa/prerecord/update",
+                        data: row,
+                        dataType: 'JSON',
+                        success: function (data, result) {
+                            if (result.status = 200) {
+                                filter();
+                            } else {
+                                alert('操作失败');
+                            }
+                        },
+                        error: function () {
+                            alert('编辑失败');
+                        },
+                        complete: function () {
+
+                        }
+                    });
+                }
+            })
+
+            $('#addForm').bootstrapValidator({
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+
+                }
+            });
+            $('#editForm').bootstrapValidator({
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    Id: {
+                        validators: {
+                            notEmpty: {
+                                message: 'ID不能为空'
+                            }
+                        }
+                    }
+                }
+            });
+
+            //请求服务数据时所传参数
+            function queryParams(params) {
+                return {
+                    pageSize: params.pageSize,
+                    pageIndex: params.pageNumber,
+                    msgType: $('#search_MsgType').val()
+                }
+            }
+
+            //删除按钮与修改按钮的出现与消失
+            $('.bootstrap-table').change(function () {
+                var dataArr = $('#mytab .selected');
+                if (dataArr.length >= 1) {
+                    $('#btn_delete').css('display', 'block').removeClass('fadeOutRight').addClass(
+                        'animated fadeInRight');
+                } else {
+                    $('#btn_delete').addClass('fadeOutRight');
+                    setTimeout(function () {
+                        $('#btn_delete').css('display', 'none');
+                    }, 400);
+                }
+            });
+
+            /*
+             * 用户管理增加用户页面所有事件
+             */
+            //增加页面表单验证
+            // Validate the form manually
+            $('#add_saveBtn').click(function () {
+                //点击保存时触发表单验证
+                $('#addForm').bootstrapValidator('validate');
+                //如果表单验证正确，则请求后台添加用户
+                if ($("#addForm").data('bootstrapValidator').isValid()) {
+                    var _info = $('#addForm').serialize();
+                    $.post("/pa/prerecord/add", $('#addForm').serialize(), function (data) {
+                        //后台返回添加成功
+                        if (data.status == 200) {
+                            $('#addBody').modal('hide');
+                            $('#mytab').bootstrapTable('refresh', {
+                                url: '/pa/prerecord/list'
+                            });
+                            $('#addForm').data('bootstrapValidator').resetForm(true);
+                            //隐藏修改与删除按钮
+                            $('#btn_delete').css('display', 'none');
+                            $('#btn_edit').css('display', 'none');
+                        }
+                        //否则
+                        else {
+                            alert('添加失败:原因' + data.msg)
+                        }
+                    })
+                }
+            });
+
+            //删除事件按钮
+            $('#btn_delete').click(function () {
+                var dataArr = $('#mytab').bootstrapTable('getSelections');
+                $('.popup_de .show_msg').text('确定要删除该设备吗?');
+                $('.popup_de').addClass('bbox');
+                $('.popup_de .btn_submit').one('click', function () {
+                    var ID = [];
+                    for (var i = 0; i < dataArr.length; i++) {
+                        ID[i] = dataArr[i].id;
+                    }
+                    $.post("/pa/prerecord/delete", {
+                        ID: ID
+                    }, function (data) {
+                        if (data.status == 200) {
+                            $('.popup_de .show_msg').text('删除成功！');
+                            $('.popup_de .btn_cancel').css('display', 'none');
+                            $('.popup_de').addClass('bbox');
+                            $('.popup_de .btn_submit').one('click', function () {
+                                $('.popup_de').removeClass('bbox');
+                            })
+                            $('#mytab').bootstrapTable('refresh', {
+                                url: '/pa/prerecord/list'
+                            });
+                        } else {
+                            alert('删除失败:原因' + data.msg)
+                        }
+                    });
+                })
+            })
+        })
+
+        function filter() {
+            $('#mytab').bootstrapTable('refresh', {
+                url: '/pa/prerecord/list'
+            })
+        }
+    </script>
+</body>
