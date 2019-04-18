@@ -146,13 +146,17 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Article\ArticleViewModel.cs" />
+    <Compile Include="Models\BootstrapTableResult.cs" />
+    <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\Customer\CustomerBillViewModel.cs" />
     <Compile Include="Models\DistributionCenter\BagViewModel.cs" />
     <Compile Include="Models\ChannelViewModel.cs" />
     <Compile Include="Models\CurrencyRateViewModel.cs" />
     <Compile Include="Models\Customer\CustomerViewModel.cs" />
     <Compile Include="Models\DepartmentViewModel.cs" />
+    <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\Order\OrderViewModel.cs" />
+    <Compile Include="Models\ResultUtil.cs" />
     <Compile Include="Models\Store\PerformanceViewModel.cs" />
     <Compile Include="Models\Store\StoreFinancialViewModel.cs" />
     <Compile Include="Models\Store\ChangeRecordViewModel.cs" />
@@ -276,6 +280,9 @@
     <Content Include="Views\Customer\Bill.cshtml" />
     <Content Include="Views\Store\Financial.cshtml" />
     <Content Include="Views\Store\Performance.cshtml" />
+    <Content Include="Views\Customer\List.cshtml" />
+    <Content Include="Views\Order\List.cshtml" />
+    <Content Include="Views\Order\Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ApplicationCore\ApplicationCore.csproj">
