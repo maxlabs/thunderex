@@ -12,15 +12,15 @@ namespace Thunder.TestData.PricePro
     {
         public static void Init(XmsDbContext context)
         {
-            List<Channel> list = new List<Channel>()
+            List<TbChannel> list = new List<TbChannel>()
             {
-                new Channel() {Id = 1, Name = "渠道A" },
-                new Channel() {Id = 2, Name = "渠道B" },
-                new Channel() {Id = 3, Name = "渠道C" },
-                new Channel() {Id = 4, Name = "渠道D" },
-                new Channel() {Id = 5, Name = "渠道E" },
-                new Channel() {Id = 6, Name = "渠道F" },
-                new Channel() {Id = 7, Name = "渠道G" },
+                new TbChannel() {Id = 1, Name = "渠道A" },
+                new TbChannel() {Id = 2, Name = "渠道B" },
+                new TbChannel() {Id = 3, Name = "渠道C" },
+                new TbChannel() {Id = 4, Name = "渠道D" },
+                new TbChannel() {Id = 5, Name = "渠道E" },
+                new TbChannel() {Id = 6, Name = "渠道F" },
+                new TbChannel() {Id = 7, Name = "渠道G" },
             };
             list.ForEach(tmp => context.Channels.Add(tmp));
             context.SaveChanges();

@@ -7,6 +7,10 @@ namespace Thunder.XMS.Models
 {
     public class CurrencyRateViewModel
     {
+        public int Id { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Code { get; set; }
         /// <summary>
         /// 币种
@@ -19,7 +23,7 @@ namespace Thunder.XMS.Models
         /// <summary>
         /// 状态
         /// </summary>
-        public bool IsEnabled { get; set; }
+        public string IsEnabled { get; set; }
 
         /// <summary>
         /// 生效时间
@@ -34,7 +38,7 @@ namespace Thunder.XMS.Models
         /// <summary>
         /// 创建人
         /// </summary>
-        public string CreateUser { get; set; }
+        public int CreateUser { get; set; }
 
         /// <summary>
         /// 创建时间

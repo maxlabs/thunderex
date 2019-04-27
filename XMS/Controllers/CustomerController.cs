@@ -43,5 +43,15 @@ namespace XMS.Controllers
             var result = ResultUtil.success("É¾³ý³É¹¦£¡");
             return Json(result, "application/json");
         }
+
+        public ActionResult Credit()
+        {
+            return View();
+        }
+
+        public ActionResult Bill()
+        {
+            return View();
+        }
     }
 }

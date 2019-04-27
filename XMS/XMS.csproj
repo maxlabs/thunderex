@@ -136,9 +136,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MaterielController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
-    <Compile Include="Controllers\PricePro\IncidentalPriceController.cs" />
     <Compile Include="Controllers\Index2Controller.cs" />
     <Compile Include="Controllers\PricePro\CurrencyRateController.cs" />
+    <Compile Include="Controllers\PricePro\IncidentalPriceController.cs" />
     <Compile Include="Controllers\ProductSkuController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -147,6 +147,8 @@
     </Compile>
     <Compile Include="Models\Article\ArticleViewModel.cs" />
     <Compile Include="Models\BootstrapTableResult.cs" />
+    <Compile Include="Models\Channel\ChannelReceiptViewModel.cs" />
+    <Compile Include="Models\Channel\ChannelPaymentViewModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\Customer\CustomerBillViewModel.cs" />
     <Compile Include="Models\DistributionCenter\BagViewModel.cs" />
@@ -167,6 +169,12 @@
     <Compile Include="Models\Store\StoreViewModel.cs" />
     <Compile Include="Models\User\UserRoleViewModel.cs" />
     <Compile Include="Models\User\UserViewModel.cs" />
+    <Compile Include="MvcExtension\OperateColumnExtensions.cs" />
+    <Compile Include="MvcExtension\CheckBoxColumnExtensions.cs" />
+    <Compile Include="MvcExtension\BootstrapTableExtensions.cs" />
+    <Compile Include="MvcExtension\BooleanSelectColumnExtensions.cs" />
+    <Compile Include="MvcExtension\EnumSelectColumnExtensions.cs" />
+    <Compile Include="MvcExtension\TextColumnExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -283,6 +291,11 @@
     <Content Include="Views\Customer\List.cshtml" />
     <Content Include="Views\Order\List.cshtml" />
     <Content Include="Views\Order\Order.cshtml" />
+    <Content Include="Views\Channel\Add.cshtml" />
+    <Content Include="Views\Channel\Payment.cshtml" />
+    <Content Include="Views\Channel\Receipt.cshtml" />
+    <Content Include="Views\IncidentalPrice\Add.cshtml" />
+    <Content Include="Views\CurrencyRate\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ApplicationCore\ApplicationCore.csproj">

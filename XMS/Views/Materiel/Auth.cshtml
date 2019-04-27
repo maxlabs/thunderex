@@ -4,85 +4,38 @@ ViewBag.Title = "Home Page";
 }
 
 <body>
-    <!-- <div th:include="header::topNav"></div> -->
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","Home")"><i class="fa fa-dashboard"></i>首页</a></li>
+            <li>@Html.ActionLink("财务管理", "Index", "Finance")</li>
+            <li class="active">物料审批</li>
+        </ol>
+    </section>
     <div class="tableBody">
         <div class="panel panel-default">
-            <div class="panel-heading">物料审批</div>
             <div class="panel-body form-group" style="margin-bottom: 0px;">
                 <div class="col-sm-2">
                     <select class="form-control" name="MsgType" id="search_MsgType" style="text-align-last: center;"
                         onchange="filter();">
-                        <option value=0 selected>选择模板类型</option>
-                        <option value=1>车站</option>
-                        <option value=2>列车</option>
+                        <option value=0 selected>未审批</option>
+                        <option value=1>已通过</option>
+                        <option value=2>未通过</option>
                     </select>
                 </div>
             </div>
         </div>
         <table id="mytab" class="table table-hover"></table>
         <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
-            <button id="btn_delete" type="button" class="btn btn-default" style="display: none;">
+            @*<button id="btn_delete" type="button" class="btn btn-default" style="display: none;">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 删除
             </button>
             <button id="btn_add" type="button" class="btn btn-default" data-toggle="modal" data-target="#addBody">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 新增
-            </button>
+            </button>*@
         </div>
-    </div>
-    <div class="modal fade" id="addBody" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">新增预录广播</h4>
-                </div>
-                <form id="addForm" method="post" class="form-horizontal" action="target.php">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">标题</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="Title" id="add_Title" />
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">外部编号</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="paId" id="add_PaId" />
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">扩展编号</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="ExtendId" id="add_ExtendId" />
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">列车广播</label>
-                            <div class="col-sm-9 role add">
-                                <input type="checkbox" class="form-control" name="isTrain" id="add_IsTrain">
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">内容</label>
-                            <div class="col-sm-9">
-                                <textarea class="form-control" rows="3" name="Content" id="add_Content"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button type="button" class="btn btn-primary" id="add_saveBtn">保存</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    </div>   
 
     <div th:include="footer::footer('')"></div>
     <script type="text/javascript">
@@ -107,52 +60,15 @@ ViewBag.Title = "Home Page";
                 clickToSelect: true, //是否启用点击选中行
                 toolbarAlign: 'right',
                 buttonsAlign: 'right', //按钮对齐方式
-                columns: [{
-                        title: '全选',
-                        field: 'select',
-                        checkbox: true,
-                        width: 25,
-                        align: 'center',
-                        valign: 'middle'
-                    }, {
-                        title: '编号',
-                        field: 'Id',
-                        visible: true
-                    },
-                    {
-                        title: '门店',
-                        field: 'Store',
-                        sortable: false
-                    },
-                    {
-                        title: '物料名称',
-                        field: 'Name',
-                        sortable: false
-                    },
-                    {
-                        title: '单位',
-                        field: 'Unit',
-                        sortable: false
-                    } ,
-                    {
-                        title: '数量',
-                        field: 'Count',
-                        sortable: false
-                    },
-                    {
-                        title: '操作',
-                        field: 'operate',
-                        align: 'center',
-                        valign: 'middle',
-                        width: 600,
-                        formatter: function (value, row, index) {
-                            var e = '<div class="tableBody">';
-                            e += '<div class="col-sm-3"><button type="button" class="btn btn-success"  onclick="addChildGrade(' + index + ')">拒绝</a></div>';
-                            e += '<div class="col-sm-3"><button type="button" class="btn btn-warning"  onclick="deleteCategory(' + index + ')">审批通过</a></div></div>';
-                            return e;
-                        }
-                    }
-
+                columns: [
+                    @Html.DataGridCheckBoxColumn(),
+                    @Html.DataGridTextColumn("编号", "Id"),
+                    @Html.DataGridTextColumn("门店", "Store"),
+                    @Html.DataGridTextColumn("物料名称", "Name"),
+                    @Html.DataGridTextColumn("单位", "Unit"),
+                    @Html.DataGridTextColumn("数量", "Count"),
+                    @Html.DataGridTextColumn("状态", "Status"),
+                    @Html.DataGridOperationColumn("操作", 250, "拒绝", "/Materiel/Deny", "btn btn-primary", "通过", "/Materiel/Accept", "btn btn-success")
                 ],
                 locale: 'zh-CN', //中文支持,
                 onEditableSave: function (field, row, oldValue, $el) {

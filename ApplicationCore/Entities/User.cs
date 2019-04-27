@@ -26,7 +26,7 @@ namespace Thunder.ApplicationCore.Entities
         public UserRole Role { get; set; }
 
         [ForeignKey("DepartId")]
-        public virtual Department Department { get; set; }
+        public virtual TbDepartment Department { get; set; }
     }
 
     [Flags]

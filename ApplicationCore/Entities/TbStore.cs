@@ -10,7 +10,7 @@ namespace Thunder.ApplicationCore.Entities
     /// <summary>
     /// 门店
     /// </summary>
-    public class Store : BaseEntity
+    public class TbStore : BaseEntity
     {
         #region 数据库字段        
         /// <summary>
@@ -28,7 +28,7 @@ namespace Thunder.ApplicationCore.Entities
         /// 上级门店
         /// </summary>
         [ForeignKey("DepartId")]
-        public virtual Department Department { get; set; }
+        public virtual TbDepartment Department { get; set; }
         #endregion
     }
 }

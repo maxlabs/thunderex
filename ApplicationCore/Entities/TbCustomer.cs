@@ -6,22 +6,19 @@ using System.Threading.Tasks;
 
 namespace Thunder.ApplicationCore.Entities
 {
-    /// <summary>
-    /// 物料
-    /// </summary>
-    public class Materiel : BaseEntity
+    public class TbCustomer : BaseEntity
     {
         /// <summary>
-        /// 名称
+        /// 姓名
         /// </summary>
         public string Name { get; set; }
         /// <summary>
-        /// 代码
+        /// 身份证号
         /// </summary>
-        public string Code { get; set; }
+        public string IdCard { get; set; }
         /// <summary>
-        /// 单位
+        /// 身份证图片
         /// </summary>
-        public string Unit { get; set; }
+        public string IdCardImage { get; set; }
     }
 }

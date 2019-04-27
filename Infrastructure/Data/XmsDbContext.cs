@@ -16,23 +16,23 @@ namespace Thunder.Infrastructure.Data
         /// <summary>
         /// 数据字典
         /// </summary>
-        public DbSet<DataDictionary> DataDictionarys { get; set; }
+        public DbSet<TbDataDictionary> DataDictionarys { get; set; }
         /// <summary>
         /// 部门
         /// </summary>
-        public DbSet<Department> Departments { get; set; }
+        public DbSet<TbDepartment> Departments { get; set; }
         /// <summary>
         /// 渠道
         /// </summary>
-        public DbSet<Channel> Channels { get; set; }
+        public DbSet<TbChannel> Channels { get; set; }
         /// <summary>
         /// 门店
         /// </summary>
-        public DbSet<Store> Stores { get; set; }
+        public DbSet<TbStore> Stores { get; set; }
         /// <summary>
         /// 集散中心
         /// </summary>
-        public DbSet<DistributionCenter> DistributionCenters { get; set; }
+        public DbSet<TbDistributionCenter> DistributionCenters { get; set; }
         /// <summary>
         /// 用户
         /// </summary>
@@ -40,23 +40,23 @@ namespace Thunder.Infrastructure.Data
         /// <summary>
         /// 客户
         /// </summary>
-        public DbSet<Customer> Customers { get; set; }
+        public DbSet<TbCustomer> Customers { get; set; }
         /// <summary>
         /// 物料
         /// </summary>
-        public DbSet<Materiel> Materiels { get; set; }
+        public DbSet<TbMateriel> Materiels { get; set; }
         /// <summary>
         /// 物料申请/审批
         /// </summary>
-        public DbSet<MaterielOrder> MaterielOrders { get; set; }
+        public DbSet<TbMaterielOrder> MaterielOrders { get; set; }
         /// <summary>
         /// 汇率
         /// </summary>
-        public DbSet<CurrencyRate> CurrencyRates { get; set; }
+        public DbSet<TbCurrencyRate> CurrencyRates { get; set; }
         /// <summary>
         /// 杂费
         /// </summary>
-        public DbSet<IncidentalPrice> IncidentalPrices { get; set; }
+        public DbSet<TbIncidentalPrice> IncidentalPrices { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

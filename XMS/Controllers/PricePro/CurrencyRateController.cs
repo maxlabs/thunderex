@@ -20,7 +20,13 @@ namespace Thunder.XMS.Controllers.PricePro
         public JsonResult List()
         {
             var list = dbContext.CurrencyRates.ToList();
+
             return Json(new { total = list.Count, rows = list });
+        }
+
+        public ActionResult Add()
+        {
+            return View();
         }
     }
 }

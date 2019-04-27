@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Thunder.ApplicationCore.Entities
 {
-    public class Article : BaseEntity
+    public class TbArticle : BaseEntity
     {
         /// <summary>
         /// 标题

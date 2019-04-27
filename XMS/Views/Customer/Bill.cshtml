@@ -4,9 +4,15 @@ ViewBag.Title = "Home Page";
 }
 
 <body>
-    <!-- <div th:include="header::topNav"></div> -->
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","Home")"><i class="fa fa-dashboard"></i>首页</a></li>
+            <li>@Html.ActionLink("财务管理", "Index", "Finance")</li>
+            <li class="active">客户账单</li>
+        </ol>
+    </section>
     <div class="tableBody">
-        <div class="panel panel-default">
+        @*<div class="panel panel-default">
             <div class="panel-heading">客户账单</div>
             <div class="panel-body form-group" style="margin-bottom: 0px;">
                 <div class="col-sm-2">
@@ -18,71 +24,19 @@ ViewBag.Title = "Home Page";
                     </select>
                 </div>
             </div>
-        </div>
+        </div>*@
         <table id="mytab" class="table table-hover"></table>
         <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
             <button id="btn_delete" type="button" class="btn btn-default" style="display: none;">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 删除
             </button>
-            <button id="btn_add" type="button" class="btn btn-default" data-toggle="modal" data-target="#addBody">
+            <button id="btn_add" type="button" class="btn btn-default" data-toggle="modal" onclick="location.href='@Url.Action("DownloadBill", "Customer")'">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                新增
+                下载
             </button>
         </div>
-    </div>
-    <div class="modal fade" id="addBody" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">新增预录广播</h4>
-                </div>
-                <form id="addForm" method="post" class="form-horizontal" action="target.php">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">标题</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="Title" id="add_Title" />
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">外部编号</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="paId" id="add_PaId" />
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">扩展编号</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="ExtendId" id="add_ExtendId" />
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">列车广播</label>
-                            <div class="col-sm-9 role add">
-                                <input type="checkbox" class="form-control" name="isTrain" id="add_IsTrain">
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">内容</label>
-                            <div class="col-sm-9">
-                                <textarea class="form-control" rows="3" name="Content" id="add_Content"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button type="button" class="btn btn-primary" id="add_saveBtn">保存</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    </div>  
 
     <div th:include="footer::footer('')"></div>
     <script type="text/javascript">
@@ -107,41 +61,12 @@ ViewBag.Title = "Home Page";
                 clickToSelect: true, //是否启用点击选中行
                 toolbarAlign: 'right',
                 buttonsAlign: 'right', //按钮对齐方式
-                columns: [{
-                        title: '全选',
-                        field: 'select',
-                        checkbox: true,
-                        width: 25,
-                        align: 'center',
-                        valign: 'middle'
-                    },
-                    {
-                        title: '编号',
-                        field: 'Id',
-                        visible: true
-                    },
-                    {
-                        title: '订单编号',
-                        field: 'OrderId',
-                        sortable: false
-                    },
-                    {
-                        title: '费用',
-                        field: 'Fee',
-                        sortable: false
-                    }
-                    ,
-                    {
-                        title: '创建时间',
-                        field: 'CreateDate',
-                        sortable: false
-                    }
-                    ,
-                    {
-                        title: '状态',
-                        field: 'State',
-                        sortable: false
-                    }
+                columns: [
+                    @Html.DataGridCheckBoxColumn(),
+                    @Html.DataGridTextColumn("编号", "Id"),
+                    @Html.DataGridTextColumn("订单编号", "OrderId"),
+                    @Html.DataGridTextColumn("费用", "Fee"),
+                    @Html.DataGridTextColumn("状态", "State"),                 
                 ],
                 locale: 'zh-CN', //中文支持,
                 onEditableSave: function (field, row, oldValue, $el) {

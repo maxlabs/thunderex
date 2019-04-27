@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using Thunder.ApplicationCore.Entities;
 
-namespace Thunder.XMS.Models
+namespace Thunder.ApplicationCore.Entities
 {
-    public class ChannelViewModel
+    /// <summary>
+    /// 渠道
+    /// </summary>
+    public class TbChannel : BaseEntity
     {
         /// <summary>
         /// 编码
@@ -19,8 +23,8 @@ namespace Thunder.XMS.Models
         /// <summary>
         /// 进位方式
         /// </summary>
-
-        public CarryMethod CarryMethod { get; set; }
+   
+        public  CarryMethod CarryMethod { get; set; }
         /// <summary>
         /// 重量限制
         /// </summary>
@@ -45,5 +49,30 @@ namespace Thunder.XMS.Models
         /// 中英文限制
         /// </summary>
         public LanguageType Language { get; set; }
+    }
+
+    public enum LanguageType
+    {
+        /// <summary>
+        /// 中文
+        /// </summary>
+        [Display(Name ="中文")]
+        Chinese = 0,
+        [Display(Name = "英文")]
+        English = 1,
+        [Display(Name = "中英文")]
+        Both = 2
+    }
+
+    //[Flags]
+    public enum CarryMethod
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        [Display(Name = "进位取整")]
+        CarryInteger = 0,
+        [Display(Name = "未知")]
+        CarryHalf = 1
     }
 }

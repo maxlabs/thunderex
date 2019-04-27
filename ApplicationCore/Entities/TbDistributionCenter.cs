@@ -10,7 +10,7 @@ namespace Thunder.ApplicationCore.Entities
     /// <summary>
     /// 集散中心
     /// </summary>
-    public class DistributionCenter : BaseEntity
+    public class TbDistributionCenter : BaseEntity
     {
         #region 数据库字段
         /// <summary>
@@ -28,7 +28,7 @@ namespace Thunder.ApplicationCore.Entities
         /// 父节点
         /// </summary>
         [ForeignKey("DepartId")]
-        public virtual Department Department { get; set; }
+        public virtual TbDepartment Department { get; set; }
         #endregion
     }
 }

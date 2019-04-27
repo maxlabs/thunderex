@@ -55,5 +55,10 @@ namespace XMS.Controllers
             var result = ResultUtil.success("É¾³ý³É¹¦£¡");
             return Json(result, "application/json");
         }
+
+        public ActionResult Adjust()
+        {
+            return View();
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace Thunder.ApplicationCore.Entities.PricePro
     /// <summary>
     /// 汇率
     /// </summary>
-    public class CurrencyRate : BaseEntity
+    public class TbCurrencyRate : BaseEntity
     {
         public string Code { get; set; }
         /// <summary>
@@ -55,7 +55,7 @@ namespace Thunder.ApplicationCore.Entities.PricePro
         /// </summary>
         public DateTime ModifyTime { get; set; }     
         
-          
+         
     }
 
     

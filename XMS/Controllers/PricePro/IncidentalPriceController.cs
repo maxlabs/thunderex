@@ -21,5 +21,10 @@ namespace Thunder.XMS.Controllers.PricePro
             var list = dbContext.IncidentalPrices.ToList();
             return Json(new { total = list.Count, rows = list });
         }
+
+        public ActionResult Add()
+        {
+            return View();
+        }
     }
 }

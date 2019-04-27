@@ -2,13 +2,14 @@
 Layout = "~/Views/Shared/_PageLayout.cshtml";
 ViewBag.Title = "Home Page";
 }
-
+@using Thunder.ApplicationCore.Entities;
 <body>
     <section class="content-header">
         <ol class="breadcrumb">
             <li><a href="@Url.Action("Index","Home")"><i class="fa fa-dashboard"></i>首页</a></li>
             <li>@Html.ActionLink("财务管理", "Index", "Finance")</li>
-            <li class="active">单票调整</li>
+            <li>@Html.ActionLink("渠道管理", "Index", "Channel")</li>
+            <li class="active">应付款管理</li>
         </ol>
     </section>
     <div class="tableBody">
@@ -25,24 +26,26 @@ ViewBag.Title = "Home Page";
             </div>
         </div>*@
         <table id="mytab" class="table table-hover"></table>
-        <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
+        @*<div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
             <button id="btn_delete" type="button" class="btn btn-default" style="display: none;">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 删除
             </button>
-            @*<button id="btn_add" type="button" class="btn btn-default" data-toggle="modal" data-target="#addBody">
+            <button id="btn_add" type="button" class="btn btn-default" data-toggle="modal" onclick="location.href='@Url.Action("Add", "Channel")'">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 新增
-            </button>*@
-        </div>
-    </div>
+            </button>
+            
+        </div>*@
+    </div>    
+
     <div th:include="footer::footer('')"></div>
     <script type="text/javascript">
         $(function () {
             $('#mytab').bootstrapTable({
                 method: 'post',
                 contentType: "application/x-www-form-urlencoded",
-                url: "@Url.Action("OrderList", "Order")",
+                url: "@Url.Action("PaymentList", "Channel")",
                 height: tableHeight(), //高度调整
                 toolbar: '#toolbar',
                 striped: true, //是否显示行间隔色
@@ -62,12 +65,10 @@ ViewBag.Title = "Home Page";
                 columns: [
                     @Html.DataGridCheckBoxColumn(),
                     @Html.DataGridTextColumn("编号", "Id"),
-                    @Html.DataGridTextColumn("订单号", "OrderId"),
-                    @Html.DataGridTextColumn("客户", "Customer"),
-                    @Html.DataGridTextColumn("手机号码", "Mobile"),
-                    @Html.DataGridTextColumn("身份证号", "IdCard"),
-                    @Html.DataGridTextColumn("费用", "Fee"),
-                    @Html.DataGridOperationColumn("操作", 150, "收取", "/Order/Collect", "btn btn-primary")
+                    @Html.DataGridInputColumn("重量", "Weight"),
+                    @Html.DataGridInputColumn("美国", "Country1"),
+                    @Html.DataGridInputColumn("英国", "Country2"),
+                    @Html.DataGridInputColumn("法国", "Country3")
                 ],
                 locale: 'zh-CN', //中文支持,
                 onEditableSave: function (field, row, oldValue, $el) {
@@ -142,38 +143,7 @@ ViewBag.Title = "Home Page";
                     }, 400);
                 }
             });
-
-            /*
-             * 用户管理增加用户页面所有事件
-             */
-            //增加页面表单验证
-            // Validate the form manually
-            $('#add_saveBtn').click(function () {
-                //点击保存时触发表单验证
-                $('#addForm').bootstrapValidator('validate');
-                //如果表单验证正确，则请求后台添加用户
-                if ($("#addForm").data('bootstrapValidator').isValid()) {
-                    var _info = $('#addForm').serialize();
-                    $.post("/pa/prerecord/add", $('#addForm').serialize(), function (data) {
-                        //后台返回添加成功
-                        if (data.status == 200) {
-                            $('#addBody').modal('hide');
-                            $('#mytab').bootstrapTable('refresh', {
-                                url: '/pa/prerecord/list'
-                            });
-                            $('#addForm').data('bootstrapValidator').resetForm(true);
-                            //隐藏修改与删除按钮
-                            $('#btn_delete').css('display', 'none');
-                            $('#btn_edit').css('display', 'none');
-                        }
-                        //否则
-                        else {
-                            alert('添加失败:原因' + data.msg)
-                        }
-                    })
-                }
-            });
-
+            
             //删除事件按钮
             $('#btn_delete').click(function () {
                 var dataArr = $('#mytab').bootstrapTable('getSelections');
@@ -182,11 +152,9 @@ ViewBag.Title = "Home Page";
                 $('.popup_de .btn_submit').one('click', function () {
                     var ID = [];
                     for (var i = 0; i < dataArr.length; i++) {
-                        ID[i] = dataArr[i].id;
+                        ID[i] = dataArr[i].Id;
                     }
-                    $.post("/pa/prerecord/delete", {
-                        ID: ID
-                    }, function (data) {
+                    $.post("@Url.Action("Delete", "Channel", new {}, null)", {ids:ID}, function (data) {
                         if (data.status == 200) {
                             $('.popup_de .show_msg').text('删除成功！');
                             $('.popup_de .btn_cancel').css('display', 'none');
@@ -195,7 +163,7 @@ ViewBag.Title = "Home Page";
                                 $('.popup_de').removeClass('bbox');
                             })
                             $('#mytab').bootstrapTable('refresh', {
-                                url: '/pa/prerecord/list'
+                                url: '@Url.Action("List", "Channel")'
                             });
                         } else {
                             alert('删除失败:原因' + data.msg)

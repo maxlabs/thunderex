@@ -10,7 +10,7 @@ namespace Thunder.ApplicationCore.Entities
     /// <summary>
     /// 物料申请
     /// </summary>
-    public class MaterielOrder : BaseEntity
+    public class TbMaterielOrder : BaseEntity
     {
         /// <summary>
         /// 物料编号
@@ -53,7 +53,7 @@ namespace Thunder.ApplicationCore.Entities
 
 
         [ForeignKey("MaterId")]
-        public virtual Materiel Materiel { get; set; }
+        public virtual TbMateriel Materiel { get; set; }
       
         //[ForeignKey("ReqUserId")]
         //public virtual User ReqUser { get; set; }

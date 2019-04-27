@@ -2,12 +2,17 @@
 Layout = "~/Views/Shared/_PageLayout.cshtml";
 ViewBag.Title = "Home Page";
 }
-
+@using Thunder.ApplicationCore.Entities;
 <body>
-    <!-- <div th:include="header::topNav"></div> -->
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","Home")"><i class="fa fa-dashboard"></i>首页</a></li>
+            <li>@Html.ActionLink("财务管理", "Index", "Finance")</li>
+            <li class="active">渠道管理</li>
+        </ol>
+    </section>
     <div class="tableBody">
-        <div class="panel panel-default">
-            <div class="panel-heading">渠道设置</div>
+        @*<div class="panel panel-default">
             <div class="panel-body form-group" style="margin-bottom: 0px;">
                 <div class="col-sm-2">
                     <select class="form-control" name="MsgType" id="search_MsgType" style="text-align-last: center;"
@@ -18,76 +23,25 @@ ViewBag.Title = "Home Page";
                     </select>
                 </div>
             </div>
-        </div>
+        </div>*@
         <table id="mytab" class="table table-hover"></table>
         <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
             <button id="btn_delete" type="button" class="btn btn-default" style="display: none;">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 删除
             </button>
-            <button id="btn_add" type="button" class="btn btn-default" data-toggle="modal" data-target="#addBody">
+            <button id="btn_add" type="button" class="btn btn-default" data-toggle="modal" onclick="location.href='@Url.Action("Add", "Channel")'">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 新增
             </button>
+            
         </div>
-    </div>
-    <div class="modal fade" id="addBody" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">新增预录广播</h4>
-                </div>
-                <form id="addForm" method="post" class="form-horizontal" action="target.php">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">标题</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="Title" id="add_Title" />
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">外部编号</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="paId" id="add_PaId" />
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">扩展编号</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="ExtendId" id="add_ExtendId" />
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">列车广播</label>
-                            <div class="col-sm-9 role add">
-                                <input type="checkbox" class="form-control" name="isTrain" id="add_IsTrain">
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">内容</label>
-                            <div class="col-sm-9">
-                                <textarea class="form-control" rows="3" name="Content" id="add_Content"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button type="button" class="btn btn-primary" id="add_saveBtn">保存</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    </div>    
 
     <div th:include="footer::footer('')"></div>
     <script type="text/javascript">
-        $(function () {
-            $('#mytab').bootstrapTable({
+        $(function () {            
+           $('#mytab').bootstrapTable({
                 method: 'post',
                 contentType: "application/x-www-form-urlencoded",
                 url: "@Url.Action("List", "Channel")",
@@ -107,42 +61,18 @@ ViewBag.Title = "Home Page";
                 clickToSelect: true, //是否启用点击选中行
                 toolbarAlign: 'right',
                 buttonsAlign: 'right', //按钮对齐方式
-                columns: [{
-                        title: '全选',
-                        field: 'select',
-                        checkbox: true,
-                        width: 25,
-                        align: 'center',
-                        valign: 'middle'
-                    }, {
-                        title: '编号',
-                        field: 'Id',
-                        visible: true
-                    },
-                    {
-                        title: '渠道名称',
-                        field: 'Name',
-                        sortable: false,
-                        editable: {
-                            type: 'text',
-                            title: '费用名称'
-                        }
-                    },
-                    {
-                        title: '操作',
-                        field: 'operate',
-                        align: 'center',
-                        valign: 'middle',
-                        width: 600,
-                        formatter: function (value, row, index) {
-                            var e = '<div class="tableBody">';
-                            e += '<div class="col-sm-3"><button type="button" class="btn btn-primary" onclick="addSameGrade(' + index + ')">应收价格</button></div>';
-                            e += '<div class="col-sm-3"><button type="button" class="btn btn-success"  onclick="addChildGrade(' + index + ')">应付价格</a></div>';
-
-                            return e;
-                        }
-                    }
+                columns: [
+                    @Html.DataGridCheckBoxColumn(),
+                    @Html.DataGridTextColumn("编号", "Id"),
+                    @Html.DataGridInputColumn("渠道名称", "Name"),
+                    @Html.DataGridEnumSelectColumn("进位取整", "CarryMethod", typeof(CarryMethod)),
+                    @Html.DataGridInputColumn("重量限制", "WeightLimit"),
+                    @Html.DataGridInputColumn("尺寸限制", "LengthLimit"),
+                    @Html.DataGridBooleanSelectColumn("身份证信息限制", "NeedIdCard", "需要", "不需要"),
+                    @Html.DataGridEnumSelectColumn("中英文限制", "Language", typeof(LanguageType)),
+                    @Html.DataGridOperationColumn("操作", 250, "应收价格", "/Channel/Receipt", "btn btn-primary", "应付价格", "Channel/Payment", "btn btn-success")
                 ],
+                
                 locale: 'zh-CN', //中文支持,
                 onEditableSave: function (field, row, oldValue, $el) {
                     $.ajax({
@@ -216,38 +146,7 @@ ViewBag.Title = "Home Page";
                     }, 400);
                 }
             });
-
-            /*
-             * 用户管理增加用户页面所有事件
-             */
-            //增加页面表单验证
-            // Validate the form manually
-            $('#add_saveBtn').click(function () {
-                //点击保存时触发表单验证
-                $('#addForm').bootstrapValidator('validate');
-                //如果表单验证正确，则请求后台添加用户
-                if ($("#addForm").data('bootstrapValidator').isValid()) {
-                    var _info = $('#addForm').serialize();
-                    $.post("/pa/prerecord/add", $('#addForm').serialize(), function (data) {
-                        //后台返回添加成功
-                        if (data.status == 200) {
-                            $('#addBody').modal('hide');
-                            $('#mytab').bootstrapTable('refresh', {
-                                url: '/pa/prerecord/list'
-                            });
-                            $('#addForm').data('bootstrapValidator').resetForm(true);
-                            //隐藏修改与删除按钮
-                            $('#btn_delete').css('display', 'none');
-                            $('#btn_edit').css('display', 'none');
-                        }
-                        //否则
-                        else {
-                            alert('添加失败:原因' + data.msg)
-                        }
-                    })
-                }
-            });
-
+            
             //删除事件按钮
             $('#btn_delete').click(function () {
                 var dataArr = $('#mytab').bootstrapTable('getSelections');
@@ -256,11 +155,9 @@ ViewBag.Title = "Home Page";
                 $('.popup_de .btn_submit').one('click', function () {
                     var ID = [];
                     for (var i = 0; i < dataArr.length; i++) {
-                        ID[i] = dataArr[i].id;
+                        ID[i] = dataArr[i].Id;
                     }
-                    $.post("/pa/prerecord/delete", {
-                        ID: ID
-                    }, function (data) {
+                    $.post("@Url.Action("Delete", "Channel", new {}, null)", {ids:ID}, function (data) {
                         if (data.status == 200) {
                             $('.popup_de .show_msg').text('删除成功！');
                             $('.popup_de .btn_cancel').css('display', 'none');
@@ -269,7 +166,7 @@ ViewBag.Title = "Home Page";
                                 $('.popup_de').removeClass('bbox');
                             })
                             $('#mytab').bootstrapTable('refresh', {
-                                url: '/pa/prerecord/list'
+                                url: '@Url.Action("List", "Channel")'
                             });
                         } else {
                             alert('删除失败:原因' + data.msg)

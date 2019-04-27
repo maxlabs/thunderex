@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Thunder.ApplicationCore.Entities
 {
-    public class Department : BaseEntity
+    public class TbDepartment : BaseEntity
     {
         /// <summary>
         /// 部门名称

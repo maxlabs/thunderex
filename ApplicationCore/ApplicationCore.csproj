@@ -41,20 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Article.cs" />
+    <Compile Include="Entities\Channel\TbChannelPayment.cs" />
+    <Compile Include="Entities\Channel\TbChannelReceipt.cs" />
+    <Compile Include="Entities\TbArticle.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
-    <Compile Include="Entities\Department.cs" />
-    <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\TbDepartment.cs" />
+    <Compile Include="Entities\TbCustomer.cs" />
     <Compile Include="Entities\User.cs" />
-    <Compile Include="Entities\Channel.cs" />
-    <Compile Include="Entities\DataDictionary.cs" />
-    <Compile Include="Entities\DistributionCenter.cs" />
-    <Compile Include="Entities\PricePro\IncidentalPrice.cs" />
-    <Compile Include="Entities\Misc.cs" />
-    <Compile Include="Entities\PricePro\CurrencyRate.cs" />
-    <Compile Include="Entities\Store.cs" />
-    <Compile Include="Entities\Materiel.cs" />
-    <Compile Include="Entities\MaterielOrder.cs" />
+    <Compile Include="Entities\Channel\TbChannel.cs" />
+    <Compile Include="Entities\TbDataDictionary.cs" />
+    <Compile Include="Entities\TbDistributionCenter.cs" />
+    <Compile Include="Entities\PricePro\TbIncidentalPrice.cs" />
+    <Compile Include="Entities\TbMisc.cs" />
+    <Compile Include="Entities\PricePro\TbCurrencyRate.cs" />
+    <Compile Include="Entities\TbStore.cs" />
+    <Compile Include="Entities\TbMateriel.cs" />
+    <Compile Include="Entities\TbMaterielOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

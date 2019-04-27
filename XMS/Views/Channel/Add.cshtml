@@ -1,0 +1,69 @@
+﻿@model Thunder.ApplicationCore.Entities.TbChannel
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_PageLayout.cshtml";
+}
+<body>
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home")"><i class="fa fa-dashboard"></i>首页</a></li>
+        <li>@Html.ActionLink("财务管理", "Index", "Finance")</li>
+        <li>@Html.ActionLink("渠道管理", "Index", "Channel")</li>
+        <li class="active">新增渠道</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="jax-box">
+        <form id="siteForm" class="form-horizontal">
+            <div class="box-body">
+                <div class="form-group col-sm-11">
+                    <label class="col-lg-2 col-sm-3 control-label">渠道名称</label>
+                    <div class="col-lg-6 col-sm-8">
+                        <input type="text" class="form-control" name="Title" id="add_Title" />
+                    </div>
+                </div>
+                <div class="form-group col-sm-11">
+                    <label class="col-lg-2 col-sm-3 control-label">进位取整</label>
+                    <div class="col-lg-6 col-sm-8">
+                        @Html.EnumDropDownListFor(m => m.CarryMethod, htmlAttributes: new { @class = "form-control", style = "text-align-last: center;" })
+                    </div>
+                </div>
+                <div class="form-group col-sm-11">
+                    <label class="col-lg-2 col-sm-3 control-label">重量限制</label>
+                    <div class="col-lg-5 col-sm-7">
+                        <input type="text" class="form-control" name="paId" id="add_PaId" />
+                    </div>
+                    <label class="col-lg-1 col-sm-1 control-label">磅</label>
+                </div>
+                <div class="form-group col-sm-11">
+                    <label class="col-lg-2 col-sm-3 control-label">尺寸限制</label>
+                    <div class="col-lg-5 col-sm-7">
+                        <input type="text" class="form-control" name="ExtendId" id="add_ExtendId" />
+                    </div>
+                    <label class="col-lg-1 col-sm-1 control-label">米</label>
+                </div>
+                <div class="form-group col-sm-11">
+                    <label class="col-lg-2 col-sm-3 control-label">身份证信息限制</label>
+                    <div class="col-lg-6 col-sm-8">
+                        @Html.CheckBox("NeedIdCard", htmlAttributes: new { @class="form-control" })
+                    </div>
+                </div>
+                <div class="form-group col-sm-11">
+                    <label class="col-lg-2 col-sm-3 control-label">中英文限制</label>
+                    <div class="col-lg-6 col-sm-8">
+                        @Html.EnumDropDownListFor(m => m.Language, htmlAttributes: new { @class = "form-control", style = "text-align-last: center;" })
+                    </div>
+                </div>
+                <div class="form-group col-sm-11">
+                    <div class="col-lg-4 col-sm-5"></div>
+                    <div class="col-lg-4 col-sm-4">
+                        <button type="button" class="btn btn-primary" id="add_saveBtn">保存</button>
+                    </div>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+</section>
+</body>

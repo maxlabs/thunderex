@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Thunder.ApplicationCore.Entities.PricePro
 {
-    public class IncidentalPrice : BaseEntity
+    public class TbIncidentalPrice : BaseEntity
     {
         /// <summary>
         /// 费用名称
@@ -46,20 +46,23 @@ namespace Thunder.ApplicationCore.Entities.PricePro
         public DateTime EndTime { get; set; }
     }
 
-    [Flags]
+
     public enum GoodsType
     {
         /// <summary>
         /// 包裹
         /// </summary>
+        [Display(Name = "包裹")]
         Package = 1,
         /// <summary>
         /// 袋子
         /// </summary>
+        [Display(Name = "袋子")]
         Bag = 2,
         /// <summary>
         /// 文件
         /// </summary>
+        [Display(Name = "文件")]
         File = 3
     }
 }

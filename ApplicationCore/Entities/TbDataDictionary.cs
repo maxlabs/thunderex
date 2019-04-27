@@ -9,7 +9,7 @@ namespace Thunder.ApplicationCore.Entities
     /// <summary>
     /// 数据字典
     /// </summary>
-    public class DataDictionary : BaseEntity
+    public class TbDataDictionary : BaseEntity
     {
         /// <summary>
         /// 父类编号
@@ -25,8 +25,8 @@ namespace Thunder.ApplicationCore.Entities
         public string Name { get; set; }
 
         [ForeignKey("ParentId")]
-        public virtual DataDictionary Parent { get; set; }
+        public virtual TbDataDictionary Parent { get; set; }
         [ForeignKey("ParentId")]
-        public virtual ICollection<DataDictionary> Children { get; set; }
+        public virtual ICollection<TbDataDictionary> Children { get; set; }
     }
 }

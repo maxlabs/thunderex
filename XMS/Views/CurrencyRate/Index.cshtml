@@ -4,17 +4,23 @@ ViewBag.Title = "Home Page";
 }
 
 <body>
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+            <li><a href="#">财务管理</a></li>
+            <li class="active">汇率管理</li>
+        </ol>
+    </section>
     <!-- <div th:include="header::topNav"></div> -->
     <div class="tableBody">
-        <div class="panel panel-default">
-            <div class="panel-heading">币种汇率管理</div>
+        <div class="panel panel-default">     
             <div class="panel-body form-group" style="margin-bottom: 0px;">
                 <div class="col-sm-2">
                     <select class="form-control" name="MsgType" id="search_MsgType" style="text-align-last: center;"
                         onchange="filter();">
-                        <option value=0 selected>选择模板类型</option>
-                        <option value=1>车站</option>
-                        <option value=2>列车</option>
+                        <option value=0 selected>状态</option>
+                        <option value=1>正式</option>
+                        <option value=2>草稿</option>
                     </select>
                 </div>
             </div>
@@ -25,7 +31,7 @@ ViewBag.Title = "Home Page";
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 删除
             </button>
-            <button id="btn_add" type="button" class="btn btn-default" data-toggle="modal" data-target="#addBody">
+            <button id="btn_add" type="button" class="btn btn-default" data-toggle="modal" onclick="location.href='@Url.Action("Add", "CurrencyRate")'">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 新增
             </button>
@@ -107,90 +113,18 @@ ViewBag.Title = "Home Page";
                 clickToSelect: true, //是否启用点击选中行
                 toolbarAlign: 'right',
                 buttonsAlign: 'right', //按钮对齐方式
-                columns: [{
-                        title: '全选',
-                        field: 'select',
-                        checkbox: true,
-                        width: 25,
-                        align: 'center',
-                        valign: 'middle'
-                    },
-                    {
-                        title: '编号',
-                        field: 'Id',
-                        visible: true
-                    },
-                    {
-                        title: '状态',
-                        field: 'IsEnabled',
-                        sortable: false,
-                        editable: {
-                            type: 'text',
-                            title: '状态'
-                        }
-                    },
-                    {
-                        title: '币种',
-                        field: 'Name',
-                        sortable: false,
-                        editable: {
-                            type: 'text',
-                            title: '币种'
-                        }
-                    },
-                    {
-                        title: '汇率',
-                        field: 'Rate',
-                        sortable: false,
-                        editable: {
-                            type: 'text',
-                            title: '汇率'
-                        }
-                    },
-                    {
-                        title: '生效时间',
-                        field: 'BeginDate',
-                        sortable: false,
-                        editable: {
-                            type: 'datetime',
-                            title: '生效时间'
-                        }
-                    },
-                    {
-                        title: '失效时间',
-                        field: 'EndDate',
-                        sortable: false,
-                        editable: {
-                            type: 'datetime',
-                            title: '失效时间'
-                        }
-                    },
-                    {
-                        title: '创建人',
-                        field: 'CreateUser',
-                        sortable: false
-                    },
-                    {
-                        title: '创建时间',
-                        field: 'CreateTime',
-                        sortable: false,
-                        formatter: function (value, row, index) {
-                            return changeDateFormat(value)
-                        },
-                    },
-                    {
-                        title: '修改人',
-                        field: 'ModifyUser',
-                        sortable: false
-                    },
-                    {
-                        title: '修改时间',
-                        field: 'ModifyTime',
-                        sortable: false,
-                        formatter: function (value, row, index) {
-                            return changeDateFormat(value)
-                        },
-                    }
+                columns: [
+                    @Html.DataGridCheckBoxColumn(),
+                    @Html.DataGridTextColumn("编号", "Id"),
+                    @Html.DataGridBooleanSelectColumn("状态", "IsEnabled", "启用", "草稿"),
+                    @Html.DataGridInputColumn("币种", "Name"),
+                    @Html.DataGridInputColumn("汇率", "Rate"),
+                    @Html.DataGridInputColumn("生效时间", "BeginDate"),
+                    @Html.DataGridInputColumn("失效时间", "EndDate"),
+                    @Html.DataGridTextColumn("创建人", "CreateUser"),
+                    @Html.DataGridTextColumn("创建时间", "CreateTime"),
+                    @Html.DataGridTextColumn("修改人", "ModifyUser"),
+                    @Html.DataGridTextColumn("修改时间", "ModifyTime"),
                 ],
                 locale: 'zh-CN', //中文支持,
                 onEditableSave: function (field, row, oldValue, $el) {
