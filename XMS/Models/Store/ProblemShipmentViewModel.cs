@@ -7,6 +7,23 @@ namespace Thunder.XMS.Models
 {
     public class ProblemShipmentViewModel
     {
+        public ProblemShipmentViewModel()
+        {
+
+        }
+
+        public ProblemShipmentViewModel(int id, int orderId, string serviceId, string opState, string respState, string customer, string channel, string create, DateTime createTime)
+        {
+            this.Id = id;
+            this.OrderId = orderId;
+            this.ServiceId = serviceId;
+            this.OpState = opState;
+            this.ResponseState = respState;
+            this.Customer = customer;
+            this.Channel = channel;
+            this.Creater = create;
+            this.CreateTime = DateTime.Now;
+        }
         /// <summary>
         /// 编号
         /// </summary>
@@ -42,6 +59,6 @@ namespace Thunder.XMS.Models
         /// <summary>
         /// 创建时间
         /// </summary>
-        public string CreateTime { get; set; }
+        public DateTime CreateTime { get; set; }
     }
 }

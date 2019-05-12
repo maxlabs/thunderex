@@ -159,6 +159,7 @@
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\Order\OrderViewModel.cs" />
     <Compile Include="Models\ResultUtil.cs" />
+    <Compile Include="Models\Store\ApplicationMaterialViewModel.cs" />
     <Compile Include="Models\Store\PerformanceViewModel.cs" />
     <Compile Include="Models\Store\StoreFinancialViewModel.cs" />
     <Compile Include="Models\Store\ChangeRecordViewModel.cs" />
@@ -269,7 +270,6 @@
     <Content Include="Views\Department\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
-    <Content Include="Views\ApplicationMaterials\Index.cshtml" />
     <Content Include="Views\Article\Index.cshtml" />
     <Content Include="Views\Channel\Index.cshtml" />
     <Content Include="Views\Materiel\Auth.cshtml" />
@@ -296,6 +296,8 @@
     <Content Include="Views\Channel\Receipt.cshtml" />
     <Content Include="Views\IncidentalPrice\Add.cshtml" />
     <Content Include="Views\CurrencyRate\Add.cshtml" />
+    <Content Include="Views\Store\ApplicationMaterials.cshtml" />
+    <Content Include="Views\Store\MaterialsUpload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ApplicationCore\ApplicationCore.csproj">

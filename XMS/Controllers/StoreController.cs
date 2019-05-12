@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Thunder.XMS.Models;
+using Thunder.XMS.Models.Store;
 
 namespace Thunder.XMS.Controllers
 {
@@ -43,14 +44,14 @@ namespace Thunder.XMS.Controllers
         public JsonResult ProblemList()
         {
             List<ProblemShipmentViewModel> list = new List<ProblemShipmentViewModel>();
-            list.Add(new ProblemShipmentViewModel() { Id = 1, Customer = "aaa" });
-            list.Add(new ProblemShipmentViewModel() { Id = 2, Customer = "aaa" });
-            list.Add(new ProblemShipmentViewModel() { Id = 3, Customer = "aaa" });
-            list.Add(new ProblemShipmentViewModel() { Id = 4, Customer = "aaa" });
-            list.Add(new ProblemShipmentViewModel() { Id = 5, Customer = "aaa" });
-            list.Add(new ProblemShipmentViewModel() { Id = 6, Customer = "aaa" });
-            list.Add(new ProblemShipmentViewModel() { Id = 7, Customer = "aaa" });
-            list.Add(new ProblemShipmentViewModel() { Id = 8, Customer = "aaa" });
+            list.Add(new ProblemShipmentViewModel(1, 111, "1111", "aaa", "bbb", "ccc", "ddd", "eee", DateTime.Now));
+            list.Add(new ProblemShipmentViewModel(1, 111, "1111", "aaa", "bbb", "ccc", "ddd", "eee", DateTime.Now));
+            list.Add(new ProblemShipmentViewModel(1, 111, "1111", "aaa", "bbb", "ccc", "ddd", "eee", DateTime.Now));
+            list.Add(new ProblemShipmentViewModel(1, 111, "1111", "aaa", "bbb", "ccc", "ddd", "eee", DateTime.Now));
+            list.Add(new ProblemShipmentViewModel(1, 111, "1111", "aaa", "bbb", "ccc", "ddd", "eee", DateTime.Now));
+            list.Add(new ProblemShipmentViewModel(1, 111, "1111", "aaa", "bbb", "ccc", "ddd", "eee", DateTime.Now));
+            list.Add(new ProblemShipmentViewModel(1, 111, "1111", "aaa", "bbb", "ccc", "ddd", "eee", DateTime.Now));
+            list.Add(new ProblemShipmentViewModel(1, 111, "1111", "aaa", "bbb", "ccc", "ddd", "eee", DateTime.Now));
             //var list = dbContext.Stores.ToList();
             return Json(new { total = list.Count, rows = list });
         }
@@ -135,6 +136,32 @@ namespace Thunder.XMS.Controllers
             list.Add(new PerformanceViewModel() { Id = 4, User = "asdfasdf", Fee = 440 , Count = 2});
             //var list = dbContext.Users.ToList();
             return Json(new { total = list.Count, rows = list }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ApplicationMaterials()
+        {
+            return View();
+        }
+
+        public JsonResult ApplicationList()
+        {
+            List<ApplicationMaterialViewModel> list = new List<ApplicationMaterialViewModel>();
+            list.Add(new ApplicationMaterialViewModel(1, "saaa", "sbbb", "sccc","raaa", "rbbb", "rccc"));
+            list.Add(new ApplicationMaterialViewModel(1, "saaa", "sbbb", "sccc", "raaa", "rbbb", "rccc"));
+            list.Add(new ApplicationMaterialViewModel(1, "saaa", "sbbb", "sccc", "raaa", "rbbb", "rccc"));
+            list.Add(new ApplicationMaterialViewModel(1, "saaa", "sbbb", "sccc", "raaa", "rbbb", "rccc"));
+            list.Add(new ApplicationMaterialViewModel(1, "saaa", "sbbb", "sccc", "raaa", "rbbb", "rccc"));
+            list.Add(new ApplicationMaterialViewModel(1, "saaa", "sbbb", "sccc", "raaa", "rbbb", "rccc"));
+            list.Add(new ApplicationMaterialViewModel(1, "saaa", "sbbb", "sccc", "raaa", "rbbb", "rccc"));
+            list.Add(new ApplicationMaterialViewModel(1, "saaa", "sbbb", "sccc", "raaa", "rbbb", "rccc"));
+            list.Add(new ApplicationMaterialViewModel(1, "saaa", "sbbb", "sccc", "raaa", "rbbb", "rccc"));
+            list.Add(new ApplicationMaterialViewModel(1, "saaa", "sbbb", "sccc", "raaa", "rbbb", "rccc"));
+            return Json(new { total = list.Count, rows = list }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult MaterialsUpload()
+        {
+            return View();
         }
     }
 }

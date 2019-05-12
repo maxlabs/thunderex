@@ -4,28 +4,21 @@ ViewBag.Title = "Home Page";
 }
 
 <body>
-    <!-- <div th:include="header::topNav"></div> -->
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="@Url.Action("Index","Home")"><i class="fa fa-dashboard"></i>首页</a></li>
+            <li><a href="#">国内客服</a></li>
+            <li class="active">修改记录</li>
+        </ol>
+    </section>
     <div class="tableBody">
-        <div class="panel panel-default">
-            <div class="panel-heading">运单列表</div>
-            <div class="panel-body form-group" style="margin-bottom: 0px;">
-                <div class="col-sm-2">
-                    <select class="form-control" name="MsgType" id="search_MsgType" style="text-align-last: center;"
-                        onchange="filter();">
-                        <option value=0 selected>选择模板类型</option>
-                        <option value=1>车站</option>
-                        <option value=2>列车</option>
-                    </select>
-                </div>
-            </div>
-        </div>
         <table id="mytab" class="table table-hover"></table>
         <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
             <button id="btn_delete" type="button" class="btn btn-default" style="display: none;">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 删除
             </button>
-            <button id="btn_add" type="button" class="btn btn-default" data-toggle="modal" data-target="#addBody">
+            <button id="btn_add" type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 下载
             </button>

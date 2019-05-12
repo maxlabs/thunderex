@@ -4,9 +4,15 @@ ViewBag.Title = "Home Page";
 }
 
 <body>
-    <!-- <div th:include="header::topNav"></div> -->
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+            <li><a href="#">后台管理</a></li>
+            <li class="active">部门管理</li>
+        </ol>
+    </section>
     <div class="tableBody">
-        <div class="panel panel-default">
+        @*<div class="panel panel-default">
             <div class="panel-heading">部门管理</div>
             <div class="panel-body form-group" style="margin-bottom: 0px;">
                 <div class="col-sm-2">
@@ -18,62 +24,54 @@ ViewBag.Title = "Home Page";
                     </select>
                 </div>
             </div>
-        </div>
+        </div>*@
         <table id="mytab" class="table table-hover"></table>
         <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
             <button id="btn_delete" type="button" class="btn btn-default" style="display: none;">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 删除
             </button>
-            <button id="btn_add" type="button" class="btn btn-default" data-toggle="modal" data-target="#addBody">
+            <button id="btn_add" type="button" class="btn btn-default" onclick="btnAddClick();">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 新增集散中心
             </button>
         </div>
     </div>
-    <div class="modal fade" id="addBody" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">新增预录广播</h4>
+                    <h4 class="modal-title" id="myModalLabel1">新增部门</h4>
                 </div>
                 <form id="addForm" method="post" class="form-horizontal" action="target.php">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">标题</label>
+                            <label class="col-sm-3 control-label">部门名称</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="Title" id="add_Title" />
+                                <input type="text" class="form-control" name="Name" id="add_Name" />
                             </div>
-                        </div>
+                        </div> 
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">外部编号</label>
+                            <label class="col-sm-3 control-label">部门类型</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="paId" id="add_PaId" />
+                                <select class="form-control" name="DepartType" id="add_DepartType" onchange="departTypeSelected('#add_DepartType', '#add_ParentId')">
+                                    <option value="集散中心" selected>集散中心</option>
+                                    <option value="集散中心">门店</option>
+                                </select>
                             </div>
-                        </div>
+                        </div>  
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">扩展编号</label>
+                            <label class="col-sm-3 control-label">所属部门</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="ExtendId" id="add_ExtendId" />
+                                <select class="form-control" name="ParentId" id="add_ParentId">
+                                    <option value=0 selected>顶级</option>
+                                </select>
                             </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">列车广播</label>
-                            <div class="col-sm-9 role add">
-                                <input type="checkbox" class="form-control" name="isTrain" id="add_IsTrain">
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">内容</label>
-                            <div class="col-sm-9">
-                                <textarea class="form-control" rows="3" name="Content" id="add_Content"></textarea>
-                            </div>
-                        </div>
+                        </div>     
+                               
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -85,6 +83,87 @@ ViewBag.Title = "Home Page";
     </div>
 
     <div th:include="footer::footer('')"></div>
+    <script>
+        function btnAddClick()
+		{
+            fillSelect("#add_ParentId", false);
+            $("#addModal").modal("show");
+        }
+
+        function addClick() {
+            fillSelect("#add_ParentId", false);
+            $("#addModal").modal("show");
+        }
+		
+		function deleteClick(index) {
+			var row = getRow(index);
+			$('.popup_de .show_msg').text('确定要删除该设备吗?');
+			$('.popup_de').addClass('bbox');
+			$('.popup_de .btn_submit').one('click', function() {
+				$.post("/categorytemplate/delete/" + row.id, null, function(data) {
+					if (data.status == 200) {
+						$('.popup_de .show_msg').text('删除成功！');
+						$('.popup_de .btn_cancel').css('display', 'none');
+						$('.popup_de').addClass('bbox');
+						$('.popup_de .btn_submit').one('click', function() {
+							$('.popup_de').removeClass('bbox');
+						})
+						$('#mytab').bootstrapTable('refresh', {
+							url : '/categorytemplate/list'
+						});
+					} else {
+						alert('删除失败:原因' + data.msg)
+					}
+				});
+			})
+		}
+		function changeCategory(index) {
+			fillSelect("#edit_ParentId");
+			var row = getRow(index)
+			$("#edit_Id").val(row.id);
+			$("#edit_SysType").val(row.sysType);
+			$("#edit_ParentId").val(row.parentId);
+			$("#edit_Name").val(row.name);
+			$("#edit_Code").val(row.code);
+			$("#changeBody").modal("show");
+		}
+
+		function getRow(index) {
+			var dataArr = $('#mytab').bootstrapTable('getData');
+			return dataArr[index];
+		}
+
+		function fillSelect(target, isStore) {
+			$(target).empty();
+			$(target).append("<option value=0 selected>顶级</option>"); //为Select追加一个Option(下拉项)
+			var dataArr = $('#mytab').bootstrapTable('getData');
+			for (var i = 0; i < dataArr.length; i++) {
+			    if (isStore)
+			    {
+			        
+			        $(target).append("<option value=" + dataArr[i].Id + " selected>" + dataArr[i].Name + "</option>");
+			    }
+			    else
+			    {
+			        if (dataArr[i].DepartType == "集散中心")
+			        {
+			            $(target).append("<option value=" + dataArr[i].Id + " selected>" + dataArr[i].Name + "</option>");
+			        }			        
+			    }
+				
+			}
+		}
+
+		function departTypeSelected(source, target) {
+		    var type = $(source).find("option:selected").text();
+			if (type == "集散中心") {
+				fillSelect(target, false)
+			}
+			else {
+			    fillSelect(target, true)
+			}
+		}
+    </script>
     <script type="text/javascript">
         $(function () {
             $('#mytab').bootstrapTable({
@@ -118,7 +197,7 @@ ViewBag.Title = "Home Page";
                     }, {
                         title: '编号',
                         field: 'Id',
-                        visible: true
+                        visible: false
                     },
                     {
                         title: '部门名称',
@@ -139,19 +218,18 @@ ViewBag.Title = "Home Page";
                         field: 'operate',
                         align: 'center',
                         valign: 'middle',
-                        width: 600,
+                        width: 400,
                         formatter: function (value, row, index) {
                             var e = '<div class="tableBody">';
                             if (row.DepartType == "集散中心")
                             {
-                                e += '<div class="col-sm-3"><button type="button" class="btn btn-primary" onclick="addSameGrade(' + index + ')">添加集散中心</button></div>';
-                                e += '<div class="col-sm-3"><button type="button" class="btn btn-success"  onclick="addChildGrade(' + index + ')">添加门店</a></div>';
-                                e += '<div class="col-sm-3"><button type="button" class="btn btn-warning"  onclick="deleteCategory(' + index + ')">删除集散中心</a></div></div>';
+                                e += '<div class="col-sm-3"><button type="button" class="btn btn-primary" onclick="addClick(' + index + ')">添加</button></div>';
+                                e += '<div class="col-sm-3"><button type="button" class="btn btn-warning"  onclick="deleteClick(' + index + ')">删除</a></div></div>';                               
                             }
                             else
                             {
-                                e += '<div class="col-sm-3"><button type="button" class="btn btn-success"  onclick="addChildGrade(' + index + ')">添加门店</a></div>';
-                                e += '<div class="col-sm-3"><button type="button" class="btn btn-warning"  onclick="deleteCategory(' + index + ')">删除门店</a></div></div>';
+                                e += '<div class="col-sm-3"><button type="button" class="btn btn-primary" onclick="addClick(' + index + ')">添加</button></div>';
+                                e += '<div class="col-sm-3"><button type="button" class="btn btn-warning"  onclick="deleteClick(' + index + ')">删除</a></div></div>';
                             }
                            
                             return e;

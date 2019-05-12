@@ -70,7 +70,7 @@ ViewBag.Title = "Home Page";
                     @Html.DataGridInputColumn("尺寸限制", "LengthLimit"),
                     @Html.DataGridBooleanSelectColumn("身份证信息限制", "NeedIdCard", "需要", "不需要"),
                     @Html.DataGridEnumSelectColumn("中英文限制", "Language", typeof(LanguageType)),
-                    @Html.DataGridOperationColumn("操作", 250, "应收价格", "/Channel/Receipt", "btn btn-primary", "应付价格", "Channel/Payment", "btn btn-success")
+                    @Html.DataGridOperationColumn("操作", 250, "应收价格", "/Channel/Receipt", "btn btn-primary", "应付价格", "/Channel/Payment", "btn btn-success")
                 ],
                 
                 locale: 'zh-CN', //中文支持,

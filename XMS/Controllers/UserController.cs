@@ -20,14 +20,14 @@ namespace Thunder.XMS.Controllers
         public JsonResult List()
         {
             List<UserViewModel> list = new List<UserViewModel>();
-            list.Add(new UserViewModel() { Id = 1, UserName = "aaaa", Password = "123456", Department = "集散中心A", Role = "财务" });
-            list.Add(new UserViewModel() { Id = 2, UserName = "bbbb", Password = "123456", Department = "门店A", Role = "财务" });
-            list.Add(new UserViewModel() { Id = 3, UserName = "cccc", Password = "123456", Department = "集散中心B", Role = "财务" });
-            list.Add(new UserViewModel() { Id = 4, UserName = "dddd", Password = "123456", Department = "集散中心C", Role = "客服" });
-            list.Add(new UserViewModel() { Id = 5, UserName = "eeee", Password = "123456", Department = "门店B", Role = "财务" });
-            list.Add(new UserViewModel() { Id = 6, UserName = "ffff", Password = "123456", Department = "集散中心A", Role = "门店人员" });
-            list.Add(new UserViewModel() { Id = 7, UserName = "gggg", Password = "123456", Department = "门店C", Role = "财务" });
-            list.Add(new UserViewModel() { Id = 8, UserName = "hhhh", Password = "123456", Department = "集散中心A", Role = "财务" });
+            list.Add(new UserViewModel() { Id = 1, UserName = "aaaa", Name="张三", Password = "123456", Department = "集散中心A", Role = "财务" });
+            list.Add(new UserViewModel() { Id = 2, UserName = "bbbb", Name = "张三", Password = "123456", Department = "门店A", Role = "财务" });
+            list.Add(new UserViewModel() { Id = 3, UserName = "cccc", Name = "张三", Password = "123456", Department = "集散中心B", Role = "财务" });
+            list.Add(new UserViewModel() { Id = 4, UserName = "dddd", Name = "张三", Password = "123456", Department = "集散中心C", Role = "客服" });
+            list.Add(new UserViewModel() { Id = 5, UserName = "eeee", Name = "张三", Password = "123456", Department = "门店B", Role = "财务" });
+            list.Add(new UserViewModel() { Id = 6, UserName = "ffff", Name = "张三", Password = "123456", Department = "集散中心A", Role = "门店人员" });
+            list.Add(new UserViewModel() { Id = 7, UserName = "gggg", Name = "张三", Password = "123456", Department = "门店C", Role = "财务" });
+            list.Add(new UserViewModel() { Id = 8, UserName = "hhhh", Name = "张三", Password = "123456", Department = "集散中心A", Role = "财务" });
             //var list = dbContext.Users.ToList();
             return Json(new { total = list.Count, rows = list }, JsonRequestBehavior.AllowGet);
         }

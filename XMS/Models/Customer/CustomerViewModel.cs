@@ -7,6 +7,20 @@ namespace Thunder.XMS.Models
 {
     public class CustomerViewModel
     {
+        public CustomerViewModel()
+        {
+
+        }
+
+        public CustomerViewModel(int id, string name, string sex, string mobile, string email, double credit)
+        {
+            this.Id = id;
+            this.Name = name;
+            this.Sex = sex;
+            this.Mobile = mobile;
+            this.Email = email;
+            this.Credit = credit;
+        }
         /// <summary>
         /// 编号
         /// </summary>

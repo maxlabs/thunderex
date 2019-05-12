@@ -4,17 +4,24 @@ ViewBag.Title = "Home Page";
 }
 
 <body>
-    <!-- <div th:include="header::topNav"></div> -->
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+            <li><a href="#">后台管理</a></li>
+            <li class="active">用户管理</li>
+        </ol>
+    </section>
     <div class="tableBody">
         <div class="panel panel-default">
-            <div class="panel-heading">渠道设置</div>
             <div class="panel-body form-group" style="margin-bottom: 0px;">
                 <div class="col-sm-2">
                     <select class="form-control" name="MsgType" id="search_MsgType" style="text-align-last: center;"
                         onchange="filter();">
-                        <option value=0 selected>选择模板类型</option>
-                        <option value=1>车站</option>
-                        <option value=2>列车</option>
+                        <option value=0 selected>选择部门</option>
+                        <option value=1>集散中心A</option>
+                        <option value=2>集散中心B</option>
+                        <option value=3>门店A</option>
+                        <option value=4>门店B</option>
                     </select>
                 </div>
             </div>
@@ -25,10 +32,10 @@ ViewBag.Title = "Home Page";
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 删除
             </button>
-            <button id="btn_add" type="button" class="btn btn-default" data-toggle="modal" data-target="#addBody">
+            @*<button id="btn_add" type="button" class="btn btn-default" data-toggle="modal" data-target="#addBody">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 新增
-            </button>
+            </button>*@
         </div>
     </div>
     <div class="modal fade" id="addBody" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -36,12 +43,12 @@ ViewBag.Title = "Home Page";
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">新增预录广播</h4>
+                    <h4 class="modal-title" id="myModalLabel">添加员工</h4>
                 </div>
                 <form id="addForm" method="post" class="form-horizontal" action="target.php">
                     <div class="modal-body">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">标题</label>
+                            <label class="col-sm-3 control-label">姓名</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="Title" id="add_Title" />
                             </div>
@@ -126,6 +133,15 @@ ViewBag.Title = "Home Page";
                         editable: {
                             type: 'text',
                             title: '用户名'
+                        }
+                    },
+                    {
+                        title: '姓名',
+                        field: 'Name',
+                        sortable: false,
+                        editable: {
+                            type: 'text',
+                            title: '姓名'
                         }
                     },
                     {

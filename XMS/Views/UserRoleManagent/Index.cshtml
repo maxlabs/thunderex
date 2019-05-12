@@ -4,31 +4,24 @@ ViewBag.Title = "Home Page";
 }
 
 <body>
-    <!-- <div th:include="header::topNav"></div> -->
-    <div class="tableBody">
-        <div class="panel panel-default">
-            <div class="panel-heading">渠道设置</div>
-            <div class="panel-body form-group" style="margin-bottom: 0px;">
-                <div class="col-sm-2">
-                    <select class="form-control" name="MsgType" id="search_MsgType" style="text-align-last: center;"
-                        onchange="filter();">
-                        <option value=0 selected>选择模板类型</option>
-                        <option value=1>车站</option>
-                        <option value=2>列车</option>
-                    </select>
-                </div>
-            </div>
-        </div>
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+            <li><a href="#">后台管理</a></li>
+            <li class="active">用户权限</li>
+        </ol>
+    </section>
+    <div class="tableBody">       
         <table id="mytab" class="table table-hover"></table>
         <div id="toolbar" class="btn-group pull-right" style="margin-right: 20px;">
             <button id="btn_delete" type="button" class="btn btn-default" style="display: none;">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 删除
             </button>
-            <button id="btn_add" type="button" class="btn btn-default" data-toggle="modal" data-target="#addBody">
+            @*<button id="btn_add" type="button" class="btn btn-default" data-toggle="modal" data-target="#addBody">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 新增
-            </button>
+            </button>*@
         </div>
     </div>
     <div class="modal fade" id="addBody" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -16,6 +16,10 @@ namespace Thunder.XMS.Models
         /// </summary>
         public string UserName { get; set; }
         /// <summary>
+        /// 姓名
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
         /// 密码
         /// </summary>
         public string Password { get; set; }
